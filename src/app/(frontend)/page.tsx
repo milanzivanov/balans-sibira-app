@@ -5,7 +5,7 @@ export default async function Page() {
     <section className="container mx-auto grid grid-cols-1 gap-6 p-12">
       <h1 className="text-4xl font-bold">Home</h1>
       <hr />
-      <Link href="/posts">Posts index &rarr;</Link>
+      <Link href="/posts">Vodic proizvoda &rarr;</Link>
     </section>
   );
 }

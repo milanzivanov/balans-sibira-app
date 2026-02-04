@@ -256,9 +256,9 @@ export type AllSanitySchemaTypes = Post | BlockContent | SanityImageCrop | Sanit
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)][0...12]{  id, title, slug,}
+// Query: *[_type == "post" && defined(slug.current)][0...12]{  _id, title, slug,}
 export type POSTS_QUERYResult = Array<{
-  id: null;
+  _id: string;
   title: string | null;
   slug: Slug;
 }>;
@@ -286,7 +286,7 @@ export type POST_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  id, title, slug,\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id, title, slug,\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  title, body, mainImage\n}": POST_QUERYResult;
   }
 }

@@ -20,7 +20,7 @@ export default async function Page({
   }
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
+    <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 p-12">
       <Post {...post} />
       <hr />
       <Link href="/posts">&larr; Return to index</Link>

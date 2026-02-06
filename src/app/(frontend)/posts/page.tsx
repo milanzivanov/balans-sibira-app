@@ -8,7 +8,7 @@ export default async function Page() {
   const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
+    <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 py-12">
       <h1 className="text-4xl font-bold">Vodic proizvoda</h1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
         {posts.map((post) => (
@@ -23,7 +23,7 @@ export default async function Page() {
         ))}
       </ul>
       <hr />
-      <Link href="/">&larr; Return home</Link>
+      <Link href="/">&larr; Vrati se na pocetak</Link>
     </main>
   );
 }

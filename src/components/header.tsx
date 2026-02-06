@@ -7,7 +7,7 @@ export function Header() {
       <header className=" flex items-center justify-between p-3 container max-w-6xl mx-auto">
         <Link className="md:text-xl font-bold tracking-tight" href="/">
           <Image
-            src="/bs-logo-web.svg"
+            src="/logo-web-2.svg"
             alt="Balans Sibira logo"
             width={75}
             height={75}

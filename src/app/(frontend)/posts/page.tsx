@@ -9,7 +9,9 @@ export default async function Page() {
 
   return (
     <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 py-12">
-      <h1 className="text-4xl font-bold">Vodic proizvoda</h1>
+      <h1 className="text-4xl font-bold text-blue-900 tracking-wider">
+        Vodic proizvoda
+      </h1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
         {posts.map((post) => (
           <li key={post._id}>

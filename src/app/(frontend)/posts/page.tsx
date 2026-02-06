@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/live";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
+import type { POSTS_QUERYResult } from "@/sanity/types";
 
 import "../../globals.css";
 
@@ -13,7 +14,7 @@ export default async function Page() {
         Vodic proizvoda
       </h1>
       <ul className="grid grid-cols-1 divide-y divide-blue-100">
-        {posts.map((post) => (
+        {posts.map((post: POSTS_QUERYResult[number]) => (
           <li key={post._id}>
             <Link
               className="block p-4 hover:text-blue-500"

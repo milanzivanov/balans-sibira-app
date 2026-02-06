@@ -6,6 +6,7 @@ import type { POSTS_QUERYResult } from "@/sanity/types";
 import "../../globals.css";
 
 export default async function Page() {
+  // Fetch all posts from Sanity
   const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
 
   return (

@@ -14,10 +14,15 @@ export function Header() {
             className="inline-block mr-2"
           />
         </Link>
-        <ul className="flex items-center gap-4 font-semibold text-slate-700">
+        <ul className="flex items-center gap-4 font-medium text-slate-700">
+          <li>
+            <Link className="hover:text-blue-700 transition-colors" href="/">
+              Home
+            </Link>
+          </li>
           <li>
             <Link
-              className="hover:text-pink-500 transition-colors"
+              className="hover:text-blue-700 transition-colors"
               href="/posts"
             >
               Proizvodi
@@ -25,10 +30,10 @@ export function Header() {
           </li>
           <li>
             <Link
-              className="hover:text-pink-500 transition-colors"
+              className="hover:text-blue-700 transition-colors"
               href="/studio"
             >
-              Sanity Studio
+              Admin
             </Link>
           </li>
         </ul>

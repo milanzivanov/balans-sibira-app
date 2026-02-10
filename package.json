@@ -9,7 +9,8 @@
     "lint": "eslint",
     "predev": "pnpm run typegen",
     "prebuild": "pnpm run typegen",
-    "typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract.json && sanity typegen generate"
+    "typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract.json && sanity typegen generate",
+    "devToProd": "npx sanity dataset export development - | npx sanity dataset import - production --replace"
   },
   "dependencies": {
     "@sanity/client": "^6.24.5",

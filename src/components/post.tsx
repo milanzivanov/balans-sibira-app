@@ -8,6 +8,7 @@ import { POST_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "@/components/published-at";
 import { Title } from "@/components/title";
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 export function Post(props: NonNullable<POST_QUERYResult>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;
@@ -30,6 +31,14 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
             height={400}
             alt=""
           />
+          <Link
+            href="https://wa.me/381649646048"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg transition-colors font-semibold"
+          >
+            Poruči
+          </Link>
         </figure>
       ) : null}
       {body ? (

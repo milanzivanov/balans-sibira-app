@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { FaViber, FaWhatsapp } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
 
 export default async function Page() {
   return (
@@ -20,7 +22,6 @@ export default async function Page() {
           />
         </div>
       </section>
-
       {/* about */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
         <h2 className="uppercase text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
@@ -35,7 +36,7 @@ export default async function Page() {
             className="rounded-lg"
           />
           <div>
-            <p className="text-black text-left max-w-2xl mx-auto text-sm md:text-base">
+            <p className="text-gray-500 text-left max-w-2xl mx-auto text-sm md:text-base">
               Balans Sibira nije samo stranica, to je stil zivota. To je tvoj
               partner u optimizaciji svakodnevice. Živimo u svetu koji od nas
               zahteva konstantnu prisutnost, visoku produktivnost i fizičku
@@ -47,7 +48,6 @@ export default async function Page() {
           </div>
         </div>
       </section>
-
       {/* focus */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
         <h2 className="uppercase text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
@@ -65,7 +65,7 @@ export default async function Page() {
               />
               <h3 className="font-bold pb-3">Detoks (Čist organizam) 🌿</h3>
             </div>
-            <p className="text-sm">
+            <p className="text-sm text-gray-500">
               Verujemo da svaki napredak počinje od nule. Da bi tvoj organizam
               radio punim kapacitetom, prvo mora da se oslobodi svega što ga
               usporava. Naši programi detoksikacije rade na ćelijskom nivou,
@@ -83,7 +83,7 @@ export default async function Page() {
               />
               <h3 className="font-bold pb-3">Energija (Snaga u pokretu) 🔋</h3>
             </div>
-            <p className="text-sm">
+            <p className="text-sm text-gray-500">
               Bilo da osvajaš planinske vrhove ili završavaš zahtevan radni
               sprint, tvoja energija mora biti stabilna. Fokusiramo se na
               rešenja koja ti pružaju dugotrajnu snagu bez naglih padova,
@@ -101,12 +101,49 @@ export default async function Page() {
               />
               <h3 className="font-bold pb-3">Koncentracija (Oštar um) 🧠</h3>
             </div>
-            <p className="text-sm">
+            <p className="text-sm text-gray-500">
               U svetu punom distrakcija, fokus je tvoja najvrednija valuta. Naša
               rešenja za koncentraciju su dizajnirana da podrže tvoj mozak,
               poboljšaju mikrocirkulaciju i omoguće ti &quot;deep work &quot;
               stanje bez osećaja mentalnog umora.
             </p>
+          </div>
+        </div>
+      </section>
+      {/* Contact/CTA Section */}
+      <section className="container max-w-6xl mx-auto px-4 py-16">
+        <div className=" bg-gray-100 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-blue-900 text-3xl font-bold mb-4">
+            Zainteresovani za naše proizvode?
+          </h2>
+          <p className="text-gray-500 text-lg mb-8 max-w-2xl mx-auto">
+            Kontaktirajte nas direktno za više informacija, personalizovane
+            preporuke i porudžbine
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="https://wa.me/381649646048"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+            >
+              <FaWhatsapp />
+              WhatsApp
+            </a>
+            <a
+              href="viber://chat?number=381649646048"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+            >
+              <FaViber />
+              Viber
+            </a>
+            <a
+              href="mailto:info@balanssibira.com"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+            >
+              <MdOutlineMailOutline />
+              Email
+            </a>
           </div>
         </div>
       </section>

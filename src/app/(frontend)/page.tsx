@@ -16,7 +16,7 @@ export default async function Page() {
               alt="Balans Sibira logo"
               width={700}
               height={250}
-              className="mx-auto dark:hidden "
+              className="mx-auto dark:hidden"
             />
 
             {/* Dark mode title */}

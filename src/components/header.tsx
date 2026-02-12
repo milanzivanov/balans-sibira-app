@@ -9,20 +9,30 @@ import ThemeToggle from "./ThemeToggle";
 export function Header() {
   const pathname = usePathname();
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-gray-900">
       <header className=" flex items-center justify-between p-3 container max-w-6xl mx-auto">
         <Link className="md:text-xl font-bold tracking-tight" href="/">
           <Image
-            src="/logo-web-2.svg"
+            src="/bs-logo-light-mode.svg"
             alt="Balans Sibira logo"
             width={75}
             height={75}
-            className="inline-block mr-2"
+            className="mx-auto dark:hidden"
+          />
+          <Image
+            src="/bs-logo-dark-mode.svg"
+            alt="Balans Sibira logo"
+            width={75}
+            height={75}
+            className="mx-auto hidden dark:block"
           />
         </Link>
-        <ul className="flex items-center gap-4 font-medium text-slate-700">
+        <ul className="flex items-center gap-4 font-medium text-slate-700 dark:text-slate-100">
           <li>
-            <Link className="hover:text-blue-700 transition-colors" href="/">
+            <Link
+              className={`hover:underline ${pathname === "/" ? "underline text-blue-300" : ""} transition-colors `}
+              href="/"
+            >
               Home
             </Link>
           </li>

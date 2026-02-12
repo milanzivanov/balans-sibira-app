@@ -22,20 +22,19 @@ export function Header() {
           </li>
           <li>
             <Link
-              className="hover:text-blue-700 transition-colors"
+              className={`hover:underline ${pathname === "/posts" ? "underline text-blue-300" : ""} transition-colors `}
               href="/posts"
             >
               Proizvodi
             </Link>
           </li>
           <li>
-            <Link
-              className="hover:text-blue-700 transition-colors"
-              href="/studio"
-            >
+            <Link className="transition-colors" href="/studio">
               Admin
             </Link>
           </li>
+
+          <ThemeToggle />
         </ul>
       </header>
     </div>

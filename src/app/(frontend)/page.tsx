@@ -1,5 +1,6 @@
 import BackToTopButton from "@/components/BackToTopButton";
 import Image from "next/image";
+import Link from "next/link";
 import { FaViber, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 
@@ -95,7 +96,7 @@ export default async function Page() {
                 height={75}
                 className="mb-2 rounded-full"
               />
-              <h3 className="font-bold pb-3 text-gray-100 relative z-10">
+              <h3 className="font-bold pb-3 text-green-300 relative z-10">
                 Detoks (Čist organizam)
               </h3>
             </div>
@@ -116,7 +117,7 @@ export default async function Page() {
                 height={75}
                 className="mb-2 rounded-full"
               />
-              <h3 className="font-bold pb-3 text-gray-100 relative z-10">
+              <h3 className="font-bold pb-3 text-amber-200 relative z-10">
                 Energija (Snaga u pokretu)
               </h3>
             </div>
@@ -137,7 +138,7 @@ export default async function Page() {
                 height={75}
                 className="mb-2 rounded-full"
               />
-              <h3 className="font-bold pb-3 text-gray-100 relative z-10">
+              <h3 className="font-bold pb-3 text-blue-300 relative z-10">
                 Koncentracija (Oštar um)
               </h3>
             </div>
@@ -150,40 +151,45 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
       {/* Contact/CTA Section */}
       <section className="container max-w-6xl mx-auto px-4 py-16">
-        <div className="  bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="text-blue-900 dark:text-gray-100 text-3xl font-bold mb-4 ">
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-8 md:p-12 text-center">
+          <div className="relative h-[40dvh] bg-[url('/bg-interest.jpg')] bg-cover bg-center mb-5 rounded-xl">
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+
+          <h2 className="text-blue-900 dark:text-gray-100 uppercase text-2xl font-bold mb-4 ">
             Zainteresovani za naše proizvode?
           </h2>
-          <p className="text-gray-500 dark:text-gray-100 text-lg mb-8 max-w-2xl mx-auto">
-            Kontaktirajte nas direktno za više informacija, personalizovane
+          <p className="text-gray-500 dark:text-gray-100 text-base mb-8 max-w-2xl mx-auto">
+            Kontaktirajte me direktno za više informacija, personalizovane
             preporuke i porudžbine
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
+            <Link
               href="https://wa.me/381649646048"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
             >
               <FaWhatsapp />
               WhatsApp
-            </a>
-            <a
+            </Link>
+            <Link
               href="viber://chat?number=381649646048"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
             >
               <FaViber />
               Viber
-            </a>
-            <a
+            </Link>
+            <Link
               href="mailto:info@balanssibira.com"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 min-w-50 justify-center"
             >
               <MdOutlineMailOutline />
               Email
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -197,7 +203,7 @@ export default async function Page() {
               <div className="text-center md:text-left">
                 <h3 className="text-white font-bold text-xl mb-2">
                   <Image
-                    src="/title-logo.svg"
+                    src="/title-light-mode.svg"
                     alt="Balans Sibira logo"
                     width={250}
                     height={100}

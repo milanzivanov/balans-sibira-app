@@ -5,6 +5,9 @@ import { Post } from "@/components/post";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+import { FaArrowCircleLeft } from "react-icons/fa";
+import BackToTopButton from "@/components/BackToTopButton";
+
 export default async function Page({
   params
 }: {
@@ -23,7 +26,19 @@ export default async function Page({
     <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 p-12">
       <Post {...post} />
       <hr />
-      <Link href="/posts">&larr; Return to index</Link>
+      <div className="flex items-center">
+        <Link
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-blue-800 hover:bg-blue-900 text-white text-center py-3 px-10
+             rounded-lg transition-colors font-semibold"
+        >
+          <FaArrowCircleLeft className="mr-2" />
+          <span>Vrati se na početak</span>
+        </Link>
+      </div>
+      <BackToTopButton />
     </main>
   );
 }

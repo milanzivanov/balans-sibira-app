@@ -1,7 +1,13 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export function Header() {
+  const pathname = usePathname();
   return (
     <div className="bg-gray-100">
       <header className=" flex items-center justify-between p-3 container max-w-6xl mx-auto">
@@ -22,20 +28,19 @@ export function Header() {
           </li>
           <li>
             <Link
-              className="hover:text-blue-700 transition-colors"
+              className={`hover:underline ${pathname === "/posts" ? "underline text-blue-300" : ""} transition-colors `}
               href="/posts"
             >
               Proizvodi
             </Link>
           </li>
           <li>
-            <Link
-              className="hover:text-blue-700 transition-colors"
-              href="/studio"
-            >
+            <Link className="transition-colors" href="/studio">
               Admin
             </Link>
           </li>
+
+          <ThemeToggle />
         </ul>
       </header>
     </div>

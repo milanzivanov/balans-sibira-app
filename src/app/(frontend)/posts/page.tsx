@@ -9,7 +9,6 @@ import { urlFor } from "@/sanity/lib/image";
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
 import { Categories } from "@/components/categories";
-// import { Categories } from "@/components/categories";
 
 export default async function Page() {
   const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
@@ -47,9 +46,6 @@ export default async function Page() {
             </div>
 
             <div className="p-6">
-              {/* <div className="mb-2">
-                <Categories categories={post.categories} />
-              </div> */}
               <h3 className="font-bold text-blue-900 dark:text-gray-100 line-clamp-1 text-lg mb-5">
                 {post.title}
               </h3>

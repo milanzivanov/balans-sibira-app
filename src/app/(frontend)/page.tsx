@@ -156,7 +156,7 @@ export default async function Page() {
       <section className="container max-w-6xl mx-auto px-4 py-16">
         <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-8 md:p-12 text-center">
           <div className="relative h-[40dvh] bg-[url('/bg-interest.jpg')] bg-cover bg-center mb-5 rounded-xl">
-            <div className="absolute inset-0 bg-black/30"></div>
+            <div className="absolute inset-0 rounded-xl bg-black/30"></div>
           </div>
 
           <h2 className="text-blue-900 dark:text-gray-100 uppercase text-2xl font-bold mb-4 ">

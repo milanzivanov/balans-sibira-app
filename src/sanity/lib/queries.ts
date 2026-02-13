@@ -12,7 +12,8 @@ export const POSTS_QUERY =
     categories[]->{
       _id,
       slug,
-      title
+      title,
+      color
     },
     []
   ),
@@ -33,7 +34,8 @@ export const POST_QUERY =
     categories[]->{
       _id,
       slug,
-      title
+      title,
+      color
     },
     []
   ),

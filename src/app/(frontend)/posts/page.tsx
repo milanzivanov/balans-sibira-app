@@ -17,7 +17,7 @@ export default async function Page() {
   return (
     <main className="container max-w-6xl mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold text-blue-900 tracking-wider mb-8">
-        Naši proizvodi
+        Balans ponuda?
       </h1>
       <ul className="grid grid-cols-3 gap-6 mb-8">
         {posts.map((post: POSTS_QUERYResult[number]) => (
@@ -25,6 +25,9 @@ export default async function Page() {
             className="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group"
             key={post._id}
           >
+            <div className="flex p-5">
+              <Categories categories={post.categories} />
+            </div>
             <div className="flex justify-center items-center relative h-64 bg-gray-200 dark:bg-gray-800">
               {post.mainImage ? (
                 <div className="overflow-hidden">
@@ -44,9 +47,9 @@ export default async function Page() {
             </div>
 
             <div className="p-6">
-              <div className="mb-2">
+              {/* <div className="mb-2">
                 <Categories categories={post.categories} />
-              </div>
+              </div> */}
               <h3 className="font-bold text-blue-900 dark:text-gray-100 line-clamp-1 text-lg mb-5">
                 {post.title}
               </h3>

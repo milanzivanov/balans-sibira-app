@@ -25,12 +25,12 @@ export default async function Page({
   return (
     <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 p-12">
       <Post {...post} />
-      <hr />
+
       <div className="flex justify-end items-center">
         <Link
           href="/posts"
           rel="noopener noreferrer"
-          className="flex items-center bg-blue-800 hover:bg-blue-900 text-white text-center py-3 px-10
+          className="flex items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
              rounded-lg transition-colors font-semibold"
         >
           <FaArrowCircleLeft className="mr-2" />

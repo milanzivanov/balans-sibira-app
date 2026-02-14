@@ -36,6 +36,7 @@ export function Header() {
               Home
             </Link>
           </li>
+
           <li>
             <Link
               className={`hover:underline ${pathname === "/posts" ? "underline text-blue-300" : ""} transition-colors `}
@@ -44,6 +45,16 @@ export function Header() {
               Proizvodi
             </Link>
           </li>
+
+          {/* <li>
+            <Link
+              className={`hover:underline ${pathname === "/contact" ? "underline text-blue-300" : ""} transition-colors `}
+              href="/contact"
+            >
+              Kontakt
+            </Link>
+          </li> */}
+
           <li>
             <Link className="transition-colors" href="/studio">
               Admin

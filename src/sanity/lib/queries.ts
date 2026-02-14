@@ -44,3 +44,10 @@ export const POST_QUERY =
     image
   }
 }`);
+
+export const CATEGORIES_QUERY = defineQuery(`*[_type == "category"]|order(title asc){
+  _id,
+  title,
+  slug,
+  color
+}`);

@@ -42,7 +42,7 @@ export default async function Page() {
         <h2 className="uppercase text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
           o nama
         </h2>
-        <div className="grid md:grid-cols-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+        <div className="grid md:grid-cols-2 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200">
           {/* Image Side */}
           <div className="relative h-64 md:h-auto">
             <div className="absolute inset-0 bg-blue-700 dark:bg-blue-100 opacity-10 dark:opacity-5 z-10"></div>
@@ -86,8 +86,8 @@ export default async function Page() {
           naš fokus
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
-          <div className="relative flex flex-col items-left gap-4 bg-green-700 dark:bg-gray-800 rounded-lg p-3 pb-15">
-            <div className="absolute inset-0 bg-black/10"></div>
+          <div className="relative flex flex-col items-left gap-4 bg-gray-50 dark:bg-gray-800 rounded-lg p-3 pb-15">
+            {/* <div className="absolute inset-0 bg-black/10"></div> */}
             <div className="flex items-center gap-2">
               <Image
                 src="/detoks.png"
@@ -96,19 +96,19 @@ export default async function Page() {
                 height={75}
                 className="mb-2 rounded-full"
               />
-              <h3 className="font-bold pb-3 text-green-300 relative z-10">
+              <h3 className="font-bold pb-3 text-green-400 relative z-10">
                 Detoks (Čist organizam)
               </h3>
             </div>
-            <p className="text-sm text-gray-100 relative leading-relaxed z-10">
+            <p className="text-sm text-gray-700 dark:text-gray-100  relative leading-relaxed z-10">
               Verujemo da svaki napredak počinje od nule. Da bi tvoj organizam
               radio punim kapacitetom, prvo mora da se oslobodi svega što ga
               usporava. Naši programi detoksikacije rade na ćelijskom nivou,
               vršeći &quot;factory reset&quot; tvog tela.
             </p>
           </div>
-          <div className="relative flex flex-col items-left gap-4 bg-yellow-600 dark:bg-gray-800 rounded-lg p-3">
-            <div className="absolute inset-0 bg-black/10"></div>
+          <div className="relative flex flex-col items-left gap-4 bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+            {/* <div className="absolute inset-0 bg-black/10"></div> */}
             <div className="flex items-center gap-2">
               <Image
                 src="/energija.png"
@@ -117,19 +117,19 @@ export default async function Page() {
                 height={75}
                 className="mb-2 rounded-full"
               />
-              <h3 className="font-bold pb-3 text-amber-200 relative z-10">
+              <h3 className="font-bold pb-3 text-amber-400 relative z-10">
                 Energija (Snaga u pokretu)
               </h3>
             </div>
-            <p className="text-sm text-gray-100 relative leading-relaxed z-10">
+            <p className="text-sm text-gray-700 dark:text-gray-100 relative leading-relaxed z-10">
               Bilo da osvajaš planinske vrhove ili završavaš zahtevan radni
               sprint, tvoja energija mora biti stabilna. Fokusiramo se na
               rešenja koja ti pružaju dugotrajnu snagu bez naglih padova,
               hraneći tvoje ćelije premium sastojcima iz netaknute prirode.
             </p>
           </div>
-          <div className="relative flex flex-col items-left gap-4 bg-blue-800 dark:bg-gray-800 rounded-lg p-5">
-            <div className="absolute inset-0 bg-black/10"></div>
+          <div className="relative flex flex-col items-left gap-4 bg-gray-50 dark:bg-gray-800 rounded-lg p-5">
+            {/* <div className="absolute inset-0 bg-black/10"></div> */}
             <div className="flex items-center gap-2">
               <Image
                 src="/fokus.png"
@@ -142,7 +142,7 @@ export default async function Page() {
                 Koncentracija (Oštar um)
               </h3>
             </div>
-            <p className="text-sm text-gray-100 relative leading-relaxed z-10">
+            <p className="text-sm text-gray-700 dark:text-gray-100 relative leading-relaxed z-10">
               U svetu punom distrakcija, fokus je tvoja najvrednija valuta. Naša
               rešenja za koncentraciju su dizajnirana da podrže tvoj mozak,
               poboljšaju mikrocirkulaciju i omoguće ti &quot;deep work &quot;
@@ -154,8 +154,27 @@ export default async function Page() {
 
       {/* Contact/CTA Section */}
       <section className="container max-w-6xl mx-auto px-4 py-16">
-        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-8 md:p-12 text-center">
+        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 md:p-12 text-center">
           <div className="relative h-[40dvh] bg-[url('/bg-interest.jpg')] bg-cover bg-center mb-5 rounded-xl">
+            <div className="relative z-10 pt-5 opacity-20 dark:opacity-30">
+              {/* Light mode title */}
+              <Image
+                src="/title-light-mode.svg"
+                alt="Balans Sibira logo"
+                width={500}
+                height={100}
+                className="mx-auto dark:hidden"
+              />
+
+              {/* Dark mode title */}
+              <Image
+                src="/title-dark-mode.svg"
+                alt="Balans Sibira light logo"
+                width={500}
+                height={100}
+                className="mx-auto hidden dark:block"
+              />
+            </div>
             <div className="absolute inset-0 rounded-xl bg-black/30"></div>
           </div>
 

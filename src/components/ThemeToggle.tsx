@@ -49,7 +49,7 @@ export default function ThemeToggle() {
       type="button"
       aria-label="Toggle Dark Mode"
       onClick={toggleTheme}
-      className="p-3 rounded-full bg-slate-200 dark:bg-slate-300 cursor-pointer transition-colors hover:bg-slate-300 dark:hover:bg-slate-400"
+      className="p-3 rounded-full bg-slate-200 dark:bg-slate-400 cursor-pointer transition-colors hover:bg-slate-300 dark:hover:bg-slate-400"
     >
       {dark ? <LuMoon /> : <LuSun />}
     </button>

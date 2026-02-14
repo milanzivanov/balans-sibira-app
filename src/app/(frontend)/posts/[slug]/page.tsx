@@ -28,13 +28,13 @@ export default async function Page({
 
       <div className="flex justify-end items-center">
         <Link
-          href="/"
+          href="/posts"
           rel="noopener noreferrer"
           className="flex items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
              rounded-lg transition-colors font-semibold"
         >
           <FaArrowCircleLeft className="mr-2" />
-          <span>Vrati se na početak</span>
+          <span>Vrati se na proizvode</span>
         </Link>
       </div>
       <BackToTopButton />

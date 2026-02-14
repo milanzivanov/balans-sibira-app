@@ -16,7 +16,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;
 
   return (
-    <article className="grid lg:grid-cols-12 gap-y-12">
+    <article className="grid lg:grid-cols-12 gap-y-12 p-5 bg-gray-50 dark:bg-gray-900 rounded-2xl">
       <header className="lg:col-span-12 flex flex-col gap-4 items-start">
         <div className="flex gap-4 items-center">
           <Categories categories={categories} />
@@ -37,7 +37,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
             href="https://wa.me/381649646048"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-center items-center bg-blue-800 hover:bg-blue-900 text-white text-center py-3 px-10
+            className="flex justify-center items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
              rounded-lg transition-colors font-semibold"
           >
             <span>Poruči</span>
@@ -46,7 +46,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
         </figure>
       ) : null}
       {body ? (
-        <div className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg">
+        <div className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg dark:prose-invert">
           <PortableText value={body} components={components} />
         </div>
       ) : null}

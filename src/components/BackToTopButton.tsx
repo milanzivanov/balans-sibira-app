@@ -16,7 +16,7 @@ export default function BackToTopButton() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-50 bg-slate-800 dark:bg-white text-white dark:text-black rounded-full p-3 shadow-lg hover:bg-blue-400 transition-colors cursor-pointer"
+      className="fixed bottom-6 right-6 z-50 bg-gray-800 dark:bg-gray-300 text-white dark:text-black rounded-full p-3 shadow-lg hover:bg-blue-300 transition-colors cursor-pointer"
       aria-label="Back to top"
     >
       <svg

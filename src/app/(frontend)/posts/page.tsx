@@ -19,7 +19,7 @@ export default async function Page() {
 
       <PostsContent posts={posts} categories={categories} />
 
-      <div className="flex items-center">
+      <div className="flex justify-start items-center">
         <Link
           href="/"
           rel="noopener noreferrer"

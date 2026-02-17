@@ -46,14 +46,14 @@ export function Header() {
             </Link>
           </li>
 
-          {/* <li>
+          <li>
             <Link
               className={`hover:underline ${pathname === "/contact" ? "underline text-blue-300" : ""} transition-colors `}
               href="/contact"
             >
               Kontakt
             </Link>
-          </li> */}
+          </li>
 
           <li>
             <Link className="transition-colors" href="/studio">

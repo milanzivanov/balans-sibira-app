@@ -109,7 +109,7 @@ export default function ContactPage() {
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors"
-              placeholder="vase.ime@email.com"
+              placeholder="email@email.com"
             />
           </div>
 

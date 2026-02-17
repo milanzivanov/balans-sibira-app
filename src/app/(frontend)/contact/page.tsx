@@ -1,8 +1,62 @@
+"use client";
+
 import Link from "next/link";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
+import { useState, useRef } from "react";
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("firstName") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string
+    };
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: "Poruka je uspešno poslata!"
+        });
+        formRef.current?.reset();
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Greška pri slanju poruke. Pokušajte ponovo."
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus({
+        type: "error",
+        message: "Greška pri slanju poruke. Pokušajte ponovo."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="container max-w-4xl mx-auto px-4 py-12">
       <div className="mb-8">
@@ -16,7 +70,7 @@ export default function ContactPage() {
       </div>
 
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-        <form className="space-y-6">
+        <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
           {/* First Name */}
           <div>
             <label
@@ -80,15 +134,29 @@ export default function ContactPage() {
             />
           </div>
 
+          {/* Status Message */}
+          {submitStatus.type && (
+            <div
+              className={`p-4 rounded-lg ${
+                submitStatus.type === "success"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
+
           {/* Submit Button */}
           <div className="flex items-center gap-4">
             <button
               type="submit"
+              disabled={isSubmitting}
               className="flex-1 bg-[#1b88c3] hover:bg-blue-900 text-white font-semibold 
                        py-3 px-6 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 
-                       focus:ring-offset-2"
+                       focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Pošalji poruku
+              {isSubmitting ? "Šalje se..." : "Pošalji poruku"}
             </button>
           </div>
         </form>

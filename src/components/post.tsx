@@ -10,7 +10,7 @@ import { Title } from "@/components/title";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 
-import { FaArrowCircleRight } from "react-icons/fa";
+import { FaCartArrowDown } from "react-icons/fa";
 
 export function Post(props: NonNullable<POST_QUERYResult>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;
@@ -31,22 +31,25 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
             src={urlFor(mainImage).width(400).height(400).url()}
             width={400}
             height={400}
-            alt=""
+            alt={title || "Post image"}
+            className="rounded-lg bg-gray-300 dark:bg-gray-100 object-cover"
           />
-          <Link
-            href="https://wa.me/381649646048"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
+          <div className="flex justify-start w-full">
+            <Link
+              href="https://wa.me/381649646048"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-end items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
              rounded-lg transition-colors font-semibold"
-          >
-            <span>Poruči</span>
-            <FaArrowCircleRight className="ml-2" />
-          </Link>
+            >
+              <span>Poruči</span>
+              <FaCartArrowDown className="ml-2" />
+            </Link>
+          </div>
         </figure>
       ) : null}
       {body ? (
-        <div className="lg:col-span-7 lg:col-start-6 prose lg:prose-lg dark:prose-invert">
+        <div className="lg:col-span-7 lg:col-start-5 prose lg:prose-lg dark:prose-invert">
           <PortableText value={body} components={components} />
         </div>
       ) : null}

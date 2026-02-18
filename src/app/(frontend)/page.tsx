@@ -8,7 +8,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 export default async function Page() {
   return (
     <>
-      <section className="w-full h-[calc(100dvh-99.1px)] relative flex flex-col items-center justify-center gap-6 px-4">
+      <section className="w-full h-dvh relative flex flex-col items-center justify-center gap-6 px-4 -mt-[99.1px] pt-[99.1px]">
         <Image
           fill
           src={"/siberian-nature.jpg"}
@@ -47,7 +47,7 @@ export default async function Page() {
 
       {/* about */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
-        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
+        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 dark:text-gray-100 tracking-wider text-left mb-6">
           o nama
         </h2>
         <div className="grid md:grid-cols-2 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
@@ -90,7 +90,7 @@ export default async function Page() {
 
       {/* focus */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
-        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
+        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 dark:text-gray-100 tracking-wider text-left mb-6">
           naš fokus
         </h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -159,7 +159,7 @@ export default async function Page() {
 
       {/* Contact/CTA Section */}
       <section className="container max-w-6xl mx-auto px-4 py-16">
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 sm:p-8 md:p-12 text-center border border-gray-200 dark:border-gray-700">
+        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6  sm:p-8 md:p-12 text-center border border-gray-200 dark:border-gray-700">
           <div className="relative h-[30vh] sm:h-[40dvh] bg-[url('/bg-interest.jpg')] bg-cover bg-center mb-5 rounded-xl">
             <div className="relative z-10 p-5 opacity-20 dark:opacity-30">
               {/* Light mode title */}

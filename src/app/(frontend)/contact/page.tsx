@@ -59,18 +59,22 @@ export default function ContactPage() {
 
   return (
     <main className="container max-w-4xl mx-auto px-4 py-12">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-blue-900 tracking-wider mb-4">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 tracking-wider mb-3 sm:mb-4">
           Kontakt
         </h1>
-        <p className="text-gray-700 text-lg">
+        <p className="text-gray-700 text-sm sm:text-base lg:text-lg">
           Imate pitanje? Pošaljite nam poruku i odgovorićemo vam u najkraćem
           mogućem roku.
         </p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-        <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 border border-gray-200 dark:border-gray-700">
+        <form
+          ref={formRef}
+          className="space-y-4 sm:space-y-6"
+          onSubmit={handleSubmit}
+        >
           {/* First Name */}
           <div>
             <label
@@ -87,7 +91,7 @@ export default function ContactPage() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                       transition-colors"
+                       transition-colors text-sm sm:text-base"
               placeholder="Vaše ime"
             />
           </div>
@@ -108,7 +112,7 @@ export default function ContactPage() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                       transition-colors"
+                       transition-colors text-sm sm:text-base"
               placeholder="email@email.com"
             />
           </div>
@@ -129,7 +133,7 @@ export default function ContactPage() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                       transition-colors resize-none"
+                       transition-colors resize-none text-sm sm:text-base"
               placeholder="Napišite vašu poruku ovde..."
             />
           </div>
@@ -137,10 +141,10 @@ export default function ContactPage() {
           {/* Status Message */}
           {submitStatus.type && (
             <div
-              className={`p-4 rounded-lg ${
+              className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
                 submitStatus.type === "success"
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800"
+                  ? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"
+                  : "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300"
               }`}
             >
               {submitStatus.message}
@@ -152,9 +156,10 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 bg-[#1b88c3] hover:bg-blue-900 text-white font-semibold 
-                       py-3 px-6 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 
-                       focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 
+                       text-white font-semibold py-3 px-6 rounded-lg transition-colors 
+                       focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+                       disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
             >
               {isSubmitting ? "Šalje se..." : "Pošalji poruku"}
             </button>
@@ -163,11 +168,12 @@ export default function ContactPage() {
       </div>
 
       {/* Back Button */}
-      <div className="flex justify-end items-center mt-8">
+      <div className="flex justify-end items-center mt-8 sm:mt-12">
         <Link
           href="/"
-          className="flex items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center 
-                   py-3 px-10 rounded-lg transition-colors font-semibold"
+          className="flex items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 
+                   text-white text-center py-3 px-6 sm:px-10 rounded-lg transition-colors 
+                   font-semibold text-sm sm:text-base w-full sm:w-auto justify-center"
         >
           <FaArrowCircleLeft className="mr-2" />
           <span>Vrati se na početak</span>

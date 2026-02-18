@@ -23,20 +23,20 @@ export default async function Page({
   }
 
   return (
-    <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 p-12">
+    <main className="container max-w-6xl mx-auto grid grid-cols-1 gap-6 px-4 py-12">
       <Post {...post} />
 
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center mt-8 sm:mt-12">
         <Link
           href="/posts"
           rel="noopener noreferrer"
-          className="flex items-center bg-[#1b88c3] hover:bg-blue-900 text-white text-center py-3 px-10
-             rounded-lg transition-colors font-semibold"
+          className="flex items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-center py-3 px-6 sm:px-10 rounded-lg transition-colors font-semibold text-sm sm:text-base w-full sm:w-auto justify-center"
         >
           <FaArrowCircleLeft className="mr-2" />
           <span>Vrati se na proizvode</span>
         </Link>
       </div>
+
       <BackToTopButton />
     </main>
   );

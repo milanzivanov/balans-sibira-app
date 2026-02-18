@@ -129,14 +129,14 @@ export function Header() {
         <>
           {/* Backdrop - clicking closes menu */}
           <div
-            className="md:hidden fixed inset-0 bg-black/50 z-30"
+            className="md:hidden fixed inset-0 top-[99.1px] bg-black/50 z-30"
             onClick={closeMobileMenu}
             aria-hidden="true"
           />
 
           {/* Menu */}
-          <nav className="md:hidden fixed inset-0 top-[99.1px] bg-gray-50 dark:bg-gray-800 z-40">
-            <ul className="flex flex-col font-medium text-slate-700 dark:text-slate-100 h-full">
+          <nav className="md:hidden fixed left-0 right-0 top-[99.1px] bottom-0 bg-gray-50 dark:bg-gray-800 z-40 overflow-y-auto">
+            <ul className="flex flex-col font-medium text-slate-700 dark:text-slate-100 h-full justify-center">
               <li>
                 <Link
                   className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${

@@ -48,7 +48,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
         </figure>
       ) : null}
       {body ? (
-        <div className="lg:col-span-7 lg:col-start-5 prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none">
+        <div className="lg:col-span-7 lg:col-start-6 prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none">
           <PortableText value={body} components={components} />
         </div>
       ) : null}

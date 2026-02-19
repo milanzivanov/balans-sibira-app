@@ -27,7 +27,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
 
   const filteredPosts = activeFilter
     ? posts.filter((post) =>
-        post.categories.some((cat) => cat.slug?.current === activeFilter)
+        post.categories?.some((cat) => cat.slug?.current === activeFilter)
       )
     : posts;
 
@@ -84,7 +84,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
               key={post._id}
             >
               <div className="flex gap-2 p-3 sm:p-5">
-                <Categories categories={post.categories} />
+                <Categories categories={post.categories || []} />
               </div>
               <div className="flex justify-center items-center relative h-48 sm:h-56 md:h-64 bg-gray-200 dark:bg-gray-700">
                 {post.mainImage ? (

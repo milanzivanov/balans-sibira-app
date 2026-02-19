@@ -33,21 +33,21 @@ export function Header() {
   return (
     <>
       <div className="bg-gray-100 dark:bg-gray-900 fixed top-0 left-0 right-0 z-50">
-        <header className="flex items-center justify-between p-3 container max-w-6xl mx-auto">
+        <header className="flex items-center justify-between p-2 sm:p-3 container max-w-6xl mx-auto">
           <Link className="md:text-xl font-bold tracking-tight" href="/">
             <Image
               src="/bs-logo-light-mode.svg"
               alt="Balans Sibira logo"
               width={75}
               height={75}
-              className="mx-auto dark:hidden"
+              className="mx-auto dark:hidden w-14 h-14 sm:w-18.75 sm:h-18.75"
             />
             <Image
               src="/bs-logo-dark-mode.svg"
               alt="Balans Sibira logo"
               width={75}
               height={75}
-              className="mx-auto hidden dark:block"
+              className="mx-auto hidden dark:block w-14 h-14 sm:w-18.75 sm:h-18.75"
             />
           </Link>
 
@@ -90,7 +90,7 @@ export function Header() {
           </ul>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex md:hidden items-center gap-2 sm:gap-3">
             <ThemeToggle />
             <button
               onClick={toggleMobileMenu}
@@ -100,7 +100,7 @@ export function Header() {
               {isMobileMenuOpen ? (
                 // Close Icon
                 <svg
-                  className="w-6 h-6"
+                  className="w-7 h-7 sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ export function Header() {
               ) : (
                 // Hamburger Icon
                 <svg
-                  className="w-6 h-6"
+                  className="w-7 h-7 sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -134,7 +134,7 @@ export function Header() {
       </div>
 
       {/* Spacer to prevent content from being hidden under fixed header */}
-      <div className="h-[99.1px]" />
+      <div className="h-17 sm:h-[99.1px]" />
 
       {/* Mobile Navigation Menu - Full Screen Overlay */}
       {isMobileMenuOpen && (
@@ -147,8 +147,8 @@ export function Header() {
           />
 
           {/* Menu */}
-          <nav className="md:hidden fixed inset-0 bg-gray-50 dark:bg-gray-800 z-40 pt-[99.1px]">
-            <ul className="flex flex-col font-medium text-slate-700 dark:text-slate-100 h-full justify-center pb-[99.1px]">
+          <nav className="md:hidden fixed inset-0 bg-gray-50 dark:bg-gray-800 z-40 pt-17 sm:pt-[99.1px]">
+            <ul className="flex flex-col font-medium text-slate-700 dark:text-slate-100 h-full justify-center pb-17 sm:pb-[99.1px]">
               <li>
                 <Link
                   className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${

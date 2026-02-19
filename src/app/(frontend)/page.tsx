@@ -8,7 +8,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 export default async function Page() {
   return (
     <>
-      <section className="w-full h-dvh relative flex flex-col items-center justify-center gap-6 px-4 -mt-[99.1px] pt-[99.1px]">
+      <section className="w-full h-dvh relative flex flex-col items-center justify-center gap-6 px-4 -mt-17 sm:-mt-[99.1px] pt-17 sm:pt-[99.1px]">
         <Image
           fill
           src={"/siberian-nature.jpg"}
@@ -38,7 +38,7 @@ export default async function Page() {
             />
           </h1>
 
-          <p className="bg-gray-200/25 font-bold text-gray-100 text-xs sm:text-base md:text-md max-w-full sm:max-w-100 mx-auto mt-4 text-center tracking-wide rounded-2xl px-4 sm:px-3 py-3">
+          <p className="bg-white/80 dark:bg-gray-900/80 font-bold text-gray-900 dark:text-gray-100 text-xs sm:text-base md:text-md max-w-full sm:max-w-100 mx-auto mt-4 text-center tracking-wide rounded-2xl px-4 sm:px-3 py-3">
             Balans nije samo reč, balans je stil života. <br />
             Zato budi u svom balansu!
           </p>
@@ -47,13 +47,13 @@ export default async function Page() {
 
       {/* about */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
-        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 dark:text-gray-100 tracking-wider text-left mb-6">
+        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 tracking-wider text-left mb-6">
           o nama
         </h2>
         <div className="grid md:grid-cols-2 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
           {/* Image Side */}
           <div className="relative h-64 md:h-auto">
-            <div className="absolute inset-0 bg-blue-700 dark:bg-blue-100 opacity-10 dark:opacity-5 z-10"></div>
+            <div className="absolute inset-0 bg-blue-700 opacity-10 dark:opacity-5 z-10"></div>
             <Image
               src="/bg-about-us.jpg"
               alt="O balansu sibira"
@@ -90,7 +90,7 @@ export default async function Page() {
 
       {/* focus */}
       <section className="container max-w-6xl mx-auto px-4 py-12">
-        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900 dark:text-gray-100 tracking-wider text-left mb-6">
+        <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900  tracking-wider text-left mb-6">
           naš fokus
         </h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">

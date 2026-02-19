@@ -257,12 +257,11 @@ export type AllSanitySchemaTypes = Post | BlockContent | SanityImageCrop | Sanit
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title,      color    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && defined(slug.current)]  |order(publishedAt desc)[0...12]{  _id,  title,  slug,  mainImage,  publishedAt,  "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",  "categories": categories[]->{_id, slug, title, color},  "author": author->{name, image}}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: Slug;
-  body: BlockContent | null;
   mainImage: {
     asset?: {
       _ref: string;
@@ -277,12 +276,13 @@ export type POSTS_QUERYResult = Array<{
     _type: "image";
   } | null;
   publishedAt: string | null;
+  excerpt: string;
   categories: Array<{
     _id: string;
     slug: Slug | null;
     title: string | null;
     color: "blue" | "green" | "orange" | "purple" | "red" | "yellow" | null;
-  }> | Array<never>;
+  }> | null;
   author: {
     name: string | null;
     image: {
@@ -354,7 +354,7 @@ export type CATEGORIES_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)]\n  |order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"excerpt\": array::join(string::split((pt::text(body)), \"\")[0..150], \"\") + \"...\",\n  \"categories\": categories[]->{_id, slug, title, color},\n  \"author\": author->{name, image}\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
     "*[_type == \"category\"]|order(title asc){\n  _id,\n  title,\n  slug,\n  color\n}": CATEGORIES_QUERYResult;
   }

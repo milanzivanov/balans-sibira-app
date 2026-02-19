@@ -28,11 +28,18 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
       {mainImage ? (
         <figure className="lg:col-span-4 flex flex-col gap-4 items-start w-full">
           <Image
-            src={urlFor(mainImage).width(400).height(400).url()}
-            width={400}
-            height={400}
+            src={urlFor(mainImage)
+              .width(800)
+              .height(800)
+              .quality(85)
+              .auto("format")
+              .url()}
+            width={800}
+            height={800}
             alt={title || "Post image"}
-            className="rounded-lg bg-gray-300 dark:bg-gray-100 object-cover w-full h-auto max-w-md mx-auto lg:mx-0"
+            className="rounded-lg object-cover w-full h-auto bg-gray-100 dark:bg-gray-700"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+            loading="lazy" // or "eager" if above fold
           />
           <div className="flex justify-start w-full">
             <Link

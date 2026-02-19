@@ -7,6 +7,8 @@ import Link from "next/link";
 
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 export default async function Page({
   params
@@ -40,4 +42,34 @@ export default async function Page({
       <BackToTopButton />
     </main>
   );
+}
+
+export async function generateStaticParams() {
+  const posts = await client.fetch<Array<{ slug: { current: string } }>>(
+    `*[_type == "post" && defined(slug.current)][0...100]{ "slug": slug.current }`
+  );
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export const revalidate = 3600; // Revalidate every hour
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { data: post } = await sanityFetch({
+    query: POST_QUERY,
+    params: await params
+  });
+
+  return {
+    title: post?.title || "Post",
+    description: post?.body?.[0]?.children?.[0]?.text?.slice(0, 160) || "",
+    openGraph: post?.mainImage
+      ? {
+          images: [urlFor(post.mainImage).width(1200).height(630).url()]
+        }
+      : undefined
+  };
 }

@@ -15,6 +15,10 @@ export default async function Page() {
           alt="siberian wild"
           className="object-cover"
           priority
+          quality={75}
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..." // Generate blur hash
         />
         <div className="absolute inset-0 bg-blue-700 dark:bg-blue-100 opacity-10 dark:opacity-5"></div>
         <div className="relative z-10 px-4">

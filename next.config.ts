@@ -10,7 +10,9 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  reactCompiler: true
+  reactCompiler: true,
+  compress: true,
+  poweredByHeader: false
 };
 
 export default nextConfig;

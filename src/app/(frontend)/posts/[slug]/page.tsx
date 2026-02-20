@@ -65,7 +65,6 @@ export async function generateMetadata({
 
   return {
     title: post?.title || "Post",
-    description: post?.body?.[0]?.children?.[0]?.text?.slice(0, 160) || "",
     openGraph: post?.mainImage
       ? {
           images: [urlFor(post.mainImage).width(1200).height(630).url()]

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaArrowCircleRight } from "react-icons/fa";
+import { FaArrowCircleDown } from "react-icons/fa";
 import { urlFor } from "@/sanity/lib/image";
 import { Categories } from "@/components/categories";
 import type { POSTS_QUERYResult, CATEGORIES_QUERYResult } from "@/sanity/types";
@@ -117,7 +117,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                   href={`/posts/${post?.slug?.current}`}
                 >
                   <span className="font-medium">Detaljnije</span>
-                  <FaArrowCircleRight className="ml-2" />
+                  <FaArrowCircleDown className="ml-2" />
                 </Link>
               </div>
             </div>

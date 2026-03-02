@@ -10,6 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.balanssibira.com"
+  ),
   title: "Balans Sibira",
   description:
     "Balans Sibira - prirodni proizvodi iz srca Sibira. Otkrijte moć sibirskih biljaka i prirodnih sastojaka za zdravlje i dobrobit. Naša ponuda uključuje biljne čajeve, tinkture, kreme i dodatke prehrani, pažljivo izrađene kako bi vam pružile najbolje iz prirode. Iskusite snagu sibirske prirode s Balans Sibira."

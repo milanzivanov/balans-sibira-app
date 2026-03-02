@@ -1,18 +1,17 @@
 import Image from 'next/image'
-
+import siberianNature from '../../../public/siberian-nature.jpg' 
  const HeroSection = () => {
   return (
           <section className="w-full h-dvh relative flex flex-col items-center justify-center gap-6 px-4 -mt-17 sm:-mt-[99.1px] pt-17 sm:pt-[99.1px]">
             <Image
               fill
-              src={"/siberian-nature.jpg"}
+              src={siberianNature}
               alt="siberian wild"
               className="object-cover"
               priority
               quality={75}
               sizes="100vw"
               placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..."
             />
             <div className="absolute inset-0 bg-blue-700 dark:bg-blue-100 opacity-10 dark:opacity-5"></div>
             <div className="relative z-10 px-4">

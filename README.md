@@ -1,14 +1,24 @@
-# Sanity and Next.js
+# Balans Sibira - Project Overview
 
-This is a [Sanity.io](https://sanity.io) and [Next.js](https://nextjs.org) project created following a Course on [Sanity Learn](https://sanity.io/learn).
+A high-performance web application built for a Siberian wellness brand, focusing on speed, content flexibility, and AI-assisted development.
 
-## Getting Started
+## 🛠 Tech Stack & Tools
 
-First, run the development server:
+- **Frontend:** [Next.js](https://nextjs.org/) (React framework)
+- **Content Management:** [Sanity.io](https://www.sanity.io/) (Headless CMS)
+- **Email Service:** [Resend](https://resend.com/) (Transactional emails)
+- **AI Assistant:** [GitHub Copilot](https://github.com/features/copilot) (Used for code generation, optimization, and debugging)
+- **Styling:** Tailwind CSS
 
-```bash
-npm run dev
-```
+## 🚀 Key Features
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-- Open [http://localhost:3000/studio](http://localhost:3000/studio) to edit content.
+- **AI-Powered Workflow:** Used GitHub Copilot to streamline complex logic and boilerplate code.
+- **Headless Architecture:** Decoupled frontend and backend for maximum performance.
+- **Dynamic Content:** Easy-to-manage product and blog updates via Sanity Studio.
+- **Automated Emails:** Clean, developer-friendly email integration using Resend.
+
+## 📈 Learning Outcomes
+
+- Implementing the latest Next.js features (App Router, Server Components).
+- Mastering AI-assisted coding to increase productivity and code quality.
+- Architecting schemas in Sanity for complex content structures.

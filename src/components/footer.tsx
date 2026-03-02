@@ -3,7 +3,13 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer>
-      <div className="bg-linear-to-br from-gray-900 to-gray-700 py-12 mt-12">
+      <div
+        className="py-12 mt-12"
+        style={{
+          backgroundImage:
+            "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
+        }}
+      >
         <div className="container max-w-6xl mx-auto px-4">
           {/* Main Footer Content */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">

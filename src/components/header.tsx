@@ -36,14 +36,14 @@ export function Header() {
         <header className="flex items-center justify-between p-2 sm:p-3 container max-w-6xl mx-auto">
           <Link className="md:text-xl font-bold tracking-tight" href="/">
             <Image
-              src="/bs-logo-light-mode.svg"
+              src="/bs-logo-light-mode-v2.svg"
               alt="Balans Sibira logo"
               width={75}
               height={75}
               className="mx-auto dark:hidden w-14 h-14 sm:w-18.75 sm:h-18.75"
             />
             <Image
-              src="/bs-logo-dark-mode.svg"
+              src="/bs-logo-dark-mode-v2.svg"
               alt="Balans Sibira logo"
               width={75}
               height={75}

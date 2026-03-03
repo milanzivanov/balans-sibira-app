@@ -8,9 +8,9 @@ import { POST_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "@/components/published-at";
 import { Title } from "@/components/title";
 import { urlFor } from "@/sanity/lib/image";
-import Link from "next/link";
+// import Link from "next/link";
 
-import { FaCartArrowDown } from "react-icons/fa";
+// import { FaCartArrowDown } from "react-icons/fa";
 
 export function Post(props: NonNullable<POST_QUERYResult>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;
@@ -41,7 +41,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
             loading="lazy" // or "eager" if above fold
           />
-          <div className="flex justify-start w-full">
+          {/* <div className="flex justify-start w-full">
             <Link
               href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
               target="_blank"
@@ -51,7 +51,7 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
               <span>Poruči</span>
               <FaCartArrowDown className="ml-2" />
             </Link>
-          </div>
+          </div> */}
         </figure>
       ) : null}
       {body ? (

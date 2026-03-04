@@ -100,7 +100,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                 ) : (
                   <div className="w-full h-full bg-linear-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center">
                     <span className="text-blue-400 dark:text-blue-300 text-xs sm:text-sm p-5">
-                      Zbog politike kompanije Siberian Wellness-a sam morao da
+                      Zbog politike kompanije Siberian Wellness sam morao da
                       skinem fotografije proizvoda.
                     </span>
                   </div>

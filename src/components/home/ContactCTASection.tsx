@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaViber, FaWhatsapp } from "react-icons/fa";
+
 import { MdOutlineMailOutline } from "react-icons/md";
 
 const ContactCTASection = () => {
@@ -53,7 +54,7 @@ const ContactCTASection = () => {
             className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto sm:min-w-37.5 justify-center"
           >
             <FaViber className="text-lg" />
-            Referalni link
+            Viber
           </Link>
           <Link
             href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}

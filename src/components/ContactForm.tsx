@@ -4,19 +4,23 @@ import Link from "next/link";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
 import { useState, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ContactForm() {
+  const locale = useLocale();
+  const t = useTranslations("contact");
+  const formT = useTranslations("contact.form");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
+    customMessage?: string;
+  }>({ type: null });
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
+    setSubmitStatus({ type: null });
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -36,21 +40,21 @@ export default function ContactForm() {
 
       if (response.ok) {
         setSubmitStatus({
-          type: "success",
-          message: "Poruka je uspešno poslata!"
+          type: "success"
         });
         formRef.current?.reset();
       } else {
         setSubmitStatus({
           type: "error",
-          message: result.error || "Greška pri slanju poruke. Pokušajte ponovo."
+          customMessage:
+            typeof result.error === "string" ? result.error : undefined
         });
       }
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus({
         type: "error",
-        message: "Greška pri slanju poruke. Pokušajte ponovo."
+        customMessage: undefined
       });
     } finally {
       setIsSubmitting(false);
@@ -61,11 +65,10 @@ export default function ContactForm() {
     <main className="container max-w-4xl mx-auto px-4 py-12">
       <div className="mb-6 sm:mb-8">
         <h1 className="uppercase text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-900 tracking-wider mb-3 sm:mb-4">
-          Kontakt
+          {t("title")}
         </h1>
         <p className="text-gray-700 text-sm sm:text-base lg:text-lg">
-          Imate pitanje? Pošaljite nam poruku i odgovorićemo vam u najkraćem
-          mogućem roku.
+          {t("description")}
         </p>
       </div>
 
@@ -81,7 +84,7 @@ export default function ContactForm() {
               htmlFor="firstName"
               className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
             >
-              Ime *
+              {formT("nameLabel")}
             </label>
             <input
               type="text"
@@ -92,7 +95,7 @@ export default function ContactForm() {
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors text-sm sm:text-base"
-              placeholder="Vaše ime"
+              placeholder={formT("namePlaceholder")}
             />
           </div>
 
@@ -102,7 +105,7 @@ export default function ContactForm() {
               htmlFor="email"
               className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
             >
-              Email *
+              {formT("emailLabel")}
             </label>
             <input
               type="email"
@@ -113,7 +116,7 @@ export default function ContactForm() {
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors text-sm sm:text-base"
-              placeholder="email@email.com"
+              placeholder={formT("emailPlaceholder")}
             />
           </div>
 
@@ -123,7 +126,7 @@ export default function ContactForm() {
               htmlFor="message"
               className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
             >
-              Poruka *
+              {formT("messageLabel")}
             </label>
             <textarea
               id="message"
@@ -134,7 +137,7 @@ export default function ContactForm() {
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors resize-none text-sm sm:text-base"
-              placeholder="Napišite vašu poruku ovde..."
+              placeholder={formT("messagePlaceholder")}
             />
           </div>
 
@@ -147,7 +150,10 @@ export default function ContactForm() {
                   : "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300"
               }`}
             >
-              {submitStatus.message}
+              {submitStatus.customMessage ??
+                (submitStatus.type === "success"
+                  ? formT("success")
+                  : formT("error"))}
             </div>
           )}
 
@@ -161,7 +167,7 @@ export default function ContactForm() {
                        focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
                        disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              {isSubmitting ? "Šalje se..." : "Pošalji poruku"}
+              {isSubmitting ? formT("submitting") : formT("submit")}
             </button>
           </div>
         </form>
@@ -170,13 +176,13 @@ export default function ContactForm() {
       {/* Back Button */}
       <div className="flex justify-end items-center mt-8 sm:mt-12">
         <Link
-          href="/"
+          href={`/${locale}`}
           className="flex items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 
                    text-white text-center py-3 px-6 sm:px-10 rounded-lg transition-colors 
                    font-semibold text-sm sm:text-base w-full sm:w-auto justify-center"
         >
           <FaArrowCircleLeft className="mr-2" />
-          <span>Vrati se na početak</span>
+          <span>{t("back")}</span>
         </Link>
       </div>
 

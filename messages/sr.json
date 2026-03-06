@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Početna",
+    "posts": "Ponuda",
+    "contact": "Kontakt",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Balans nije samo reč, balans je stil života. Zato budi u svom balansu!"
+    },
+    "about": {
+      "title": "o nama",
+      "paragraph1": "Balans Sibira nije samo stranica, to je stil života. To je tvoj partner u optimizaciji svakodnevice.",
+      "paragraph2": "Živimo u svetu koji od nas zahteva konstantnu prisutnost, visoku produktivnost i fizičku spremnost. Često zaboravljamo da naš \"unutrašnji sistem\" zahteva redovan servis kako bi mogao da isprati taj tempo.",
+      "paragraph3": "Naša misija: Pomoći ti da postigneš maksimalne performanse koristeći najčistiju snagu sibirske prirode.",
+      "imageAlt": "O balansu Sibira"
+    },
+    "focus": {
+      "title": "naš fokus",
+      "items": {
+        "detox": {
+          "title": "Detoks (Čist organizam)",
+          "description": "Verujemo da svaki napredak počinje od nule. Da bi tvoj organizam radio punim kapacitetom, prvo mora da se oslobodi svega što ga usporava. Naši programi detoksikacije rade na ćelijskom nivou, vršeći \"factory reset\" tvog tela."
+        },
+        "energy": {
+          "title": "Energija (Snaga u pokretu)",
+          "description": "Bilo da osvajaš planinske vrhove ili završavaš zahtevan radni sprint, tvoja energija mora biti stabilna. Fokusiramo se na rešenja koja ti pružaju dugotrajnu snagu bez naglih padova, hraneći tvoje ćelije premium sastojcima iz netaknute prirode."
+        },
+        "focus": {
+          "title": "Koncentracija (Oštar um)",
+          "description": "U svetu punom distrakcija, fokus je tvoja najvrednija valuta. Naša rešenja za koncentraciju su dizajnirana da podrže tvoj mozak, poboljšaju mikrocirkulaciju i omoguće ti \"deep work\" stanje bez osećaja mentalnog umora."
+        }
+      }
+    },
+    "cta": {
+      "title": "Zainteresovani za naše proizvode?",
+      "description": "Kontaktirajte me direktno za više informacija, personalizovane preporuke i porudžbine.",
+      "whatsapp": "WhatsApp",
+      "viber": "Viber",
+      "email": "Email"
+    }
+  },
+  "posts": {
+    "title": "Balans ponuda",
+    "backToHome": "Vrati se na početak",
+    "backToPosts": "Vrati se na proizvode",
+    "filters": {
+      "all": "Svi proizvodi",
+      "empty": "Nema proizvoda u ovoj kategoriji."
+    },
+    "imageNotice": "Zbog politike kompanije Siberian Wellness morao sam da uklonim fotografije proizvoda.",
+    "details": "Detaljnije",
+    "categories": {
+      "detoks": "Detoks",
+      "energija": "Energija",
+      "fokus": "Fokus"
+    }
+  },
+  "contact": {
+    "title": "Kontaktirajte nas",
+    "description": "Imate pitanje? Pošaljite nam poruku i odgovorićemo vam u najkraćem mogućem roku.",
+    "form": {
+      "nameLabel": "Ime *",
+      "namePlaceholder": "Vaše ime",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "email@email.com",
+      "messageLabel": "Poruka *",
+      "messagePlaceholder": "Napišite vašu poruku ovde...",
+      "submit": "Pošalji poruku",
+      "submitting": "Šalje se...",
+      "success": "Poruka je uspešno poslata!",
+      "error": "Greška pri slanju poruke. Pokušajte ponovo.",
+      "cta": "Kontaktirajte me direktno za više informacija, personalizovane preporuke i porudžbine"
+    },
+    "back": "Vrati se na početak"
+  },
+  "footer": {
+    "tagline": "Snaga sibirske prirode za tvoje maksimalne performanse",
+    "rights": "© {year} Balans Sibira. Sva prava zadržana."
+  }
+}

@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+  const t = useTranslations("footer");
+  const year = new Date().getFullYear();
   return (
     <footer>
       <div
@@ -25,7 +30,7 @@ const Footer = () => {
                 />
               </h3>
               <p className="text-white text-sm max-w-xs">
-                Snaga sibirske prirode za tvoje maksimalne performanse
+                {t("tagline")}
               </p>
             </div>
 
@@ -69,7 +74,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-center text-sm text-white">
-            &copy; {new Date().getFullYear()} Balans Sibira. Sva prava zadržana.
+            {t("rights", { year })}
           </div>
         </div>
       </div>

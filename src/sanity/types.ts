@@ -13,6 +13,80 @@
  */
 
 // Source: schema.json
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  color?: "green" | "orange" | "blue" | "purple" | "red" | "yellow";
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type BlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  listItem?: "bullet";
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+  _key: string;
+}>;
+
+export type TranslationMetadata = {
+  _id: string;
+  _type: "translation.metadata";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  translations?: InternationalizedArrayReference;
+  schemaTypes?: Array<string>;
+};
+
+export type InternationalizedArrayReference = Array<{
+  _key: string;
+} & InternationalizedArrayReferenceValue>;
+
+export type InternationalizedArrayReferenceValue = {
+  _type: "internationalizedArrayReferenceValue";
+  value?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  };
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -49,39 +123,8 @@ export type Post = {
   }>;
   publishedAt?: string;
   body?: BlockContent;
+  language?: string;
 };
-
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
@@ -137,24 +180,6 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
-  color?: "green" | "orange" | "blue" | "purple" | "red" | "yellow";
 };
 
 export type SanityImagePaletteSwatch = {
@@ -253,15 +278,16 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Post | BlockContent | SanityImageCrop | SanityImageHotspot | Author | Slug | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes = Category | Slug | BlockContent | TranslationMetadata | InternationalizedArrayReference | InternationalizedArrayReferenceValue | Post | SanityImageCrop | SanityImageHotspot | Author | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]  |order(publishedAt desc)[0...12]{  _id,  title,  slug,  mainImage,  publishedAt,  "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",  "categories": categories[]->{_id, slug, title, color},  "author": author->{name, image}}
+// Query: *[_type == "post" && defined(slug.current) && language == $language]  |order(publishedAt desc)[0...12]{  _id,  title,  slug,  language,  mainImage,  publishedAt,  "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",  "categories": categories[]->{_id, slug, title, color},  "author": author->{name, image}}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
-  slug: Slug;
+  slug: Slug | null;
+  language: string | null;
   mainImage: {
     asset?: {
       _ref: string;
@@ -300,7 +326,7 @@ export type POSTS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title,      color    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug && language == $language][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title,      color    },    []  ),  author->{    name,    image  },  language}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -340,6 +366,7 @@ export type POST_QUERYResult = {
       _type: "image";
     } | null;
   } | null;
+  language: string | null;
 } | null;
 // Variable: CATEGORIES_QUERY
 // Query: *[_type == "category"]|order(title asc){  _id,  title,  slug,  color}
@@ -354,8 +381,8 @@ export type CATEGORIES_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)]\n  |order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"excerpt\": array::join(string::split((pt::text(body)), \"\")[0..150], \"\") + \"...\",\n  \"categories\": categories[]->{_id, slug, title, color},\n  \"author\": author->{name, image}\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current) && language == $language]\n  |order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  language,\n  mainImage,\n  publishedAt,\n  \"excerpt\": array::join(string::split((pt::text(body)), \"\")[0..150], \"\") + \"...\",\n  \"categories\": categories[]->{_id, slug, title, color},\n  \"author\": author->{name, image}\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug && language == $language][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  language\n}": POST_QUERYResult;
     "*[_type == \"category\"]|order(title asc){\n  _id,\n  title,\n  slug,\n  color\n}": CATEGORIES_QUERYResult;
   }
 }

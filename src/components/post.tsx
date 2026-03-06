@@ -8,9 +8,6 @@ import { POST_QUERYResult } from "@/sanity/types";
 import { PublishedAt } from "@/components/published-at";
 import { Title } from "@/components/title";
 import { urlFor } from "@/sanity/lib/image";
-// import Link from "next/link";
-
-// import { FaCartArrowDown } from "react-icons/fa";
 
 export function Post(props: NonNullable<POST_QUERYResult>) {
   const { title, author, mainImage, body, publishedAt, categories } = props;

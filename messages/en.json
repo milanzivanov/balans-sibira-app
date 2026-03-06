@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Home",
+    "posts": "Products",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Balance isn't just a word, it's a lifestyle. Stay in your balance!"
+    },
+    "about": {
+      "title": "about us",
+      "paragraph1": "Balans Sibira is more than a page – it’s a lifestyle. Your partner for optimizing everyday performance.",
+      "paragraph2": "We live in a world that demands constant presence, productivity, and physical readiness. Your \"inner system\" needs regular maintenance to keep up with that pace.",
+      "paragraph3": "Our mission: Help you reach peak performance through the purest power of Siberian nature.",
+      "imageAlt": "About Balans Sibira"
+    },
+    "focus": {
+      "title": "our focus",
+      "items": {
+        "detox": {
+          "title": "Detox (Clean system)",
+          "description": "Every upgrade starts from zero. To operate at full capacity, your body must release everything holding it back. Our detox protocols work on a cellular level – your body’s factory reset."
+        },
+        "energy": {
+          "title": "Energy (Power in motion)",
+          "description": "Whether you’re summiting mountains or closing a demanding sprint, your energy must stay steady. We deliver long-lasting power without crashes, fueled by premium wild ingredients."
+        },
+        "focus": {
+          "title": "Focus (Sharp mind)",
+          "description": "In a world of distractions, focus is your most valuable currency. Our solutions support the brain, improve microcirculation, and unlock deep-work states without mental fatigue."
+        }
+      }
+    },
+    "cta": {
+      "title": "Interested in our products?",
+      "description": "Reach out for more info, tailored recommendations, or to place an order.",
+      "whatsapp": "WhatsApp",
+      "viber": "Viber",
+      "email": "Email"
+    }
+  },
+  "posts": {
+    "title": "Balans Offer",
+    "backToHome": "Back to home",
+    "backToPosts": "Back to products",
+    "filters": {
+      "all": "All products",
+      "empty": "No products in this category."
+    },
+    "imageNotice": "Due to the Siberian Wellness policy I had to remove product photos.",
+    "details": "Learn more",
+    "categories": {
+      "detoks": "Detox",
+      "energija": "Energy",
+      "fokus": "Focus"
+    }
+  },
+  "contact": {
+    "title": "Contact us",
+    "description": "Got a question? Send us a message and we’ll reply as soon as possible.",
+    "form": {
+      "nameLabel": "Name *",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "email@email.com",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Write your message here...",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "success": "Your message has been sent!",
+      "error": "Something went wrong. Please try again.",
+      "cta": "Reach out directly for more info, tailored recommendations, or to place an order"
+    },
+    "back": "Back to home"
+  },
+  "footer": {
+    "tagline": "The power of Siberian nature for your peak performance",
+    "rights": "© {year} Balans Sibira. All rights reserved."
+  }
+}

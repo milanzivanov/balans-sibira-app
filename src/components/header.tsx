@@ -5,9 +5,13 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import LocaleSwitcher from "./LocaleSwitcher";
+import { useLocale, useTranslations } from "next-intl";
 
 export function Header() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const tNav = useTranslations("nav");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -34,7 +38,10 @@ export function Header() {
     <>
       <div className="bg-gray-100 dark:bg-gray-900 fixed top-0 left-0 right-0 z-50">
         <header className="flex items-center justify-between p-2 sm:p-3 container max-w-6xl mx-auto">
-          <Link className="md:text-xl font-bold tracking-tight" href="/">
+          <Link
+            className="md:text-xl font-bold tracking-tight"
+            href={`/${locale}`}
+          >
             <Image
               src="/bs-logo-light-mode-v2.svg"
               alt="Balans Sibira logo"
@@ -55,42 +62,44 @@ export function Header() {
           <ul className="hidden md:flex items-center gap-4 font-medium text-slate-700 dark:text-slate-100">
             <li>
               <Link
-                className={`hover:underline ${pathname === "/" ? "underline text-blue-300" : ""} transition-colors`}
-                href="/"
+                className={`hover:underline ${pathname === `/${locale}` ? "underline text-blue-300" : ""} transition-colors`}
+                href={`/${locale}`}
               >
-                Home
+                {tNav("home")}
               </Link>
             </li>
 
             <li>
               <Link
-                className={`hover:underline ${pathname === "/posts" ? "underline text-blue-300" : ""} transition-colors`}
-                href="/posts"
+                className={`hover:underline ${pathname === `/${locale}/posts` ? "underline text-blue-300" : ""} transition-colors`}
+                href={`/${locale}/posts`}
               >
-                Proizvodi
+                {tNav("posts")}
               </Link>
             </li>
 
             <li>
               <Link
-                className={`hover:underline ${pathname === "/contact" ? "underline text-blue-300" : ""} transition-colors`}
-                href="/contact"
+                className={`hover:underline ${pathname === `/${locale}/contact` ? "underline text-blue-300" : ""} transition-colors`}
+                href={`/${locale}/contact`}
               >
-                Kontakt
+                {tNav("contact")}
               </Link>
             </li>
 
             <li>
               <Link className="transition-colors" href="/studio">
-                Admin
+                {tNav("admin")}
               </Link>
             </li>
 
+            <LocaleSwitcher />
             <ThemeToggle />
           </ul>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2 sm:gap-3">
+            <LocaleSwitcher />
             <ThemeToggle />
             <button
               onClick={toggleMobileMenu}
@@ -152,42 +161,42 @@ export function Header() {
               <li>
                 <Link
                   className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                    pathname === "/"
+                    pathname === `/${locale}`
                       ? "bg-gray-200 dark:bg-gray-700 text-blue-500"
                       : ""
                   }`}
-                  href="/"
+                  href={`/${locale}`}
                   onClick={closeMobileMenu}
                 >
-                  Home
+                  {tNav("home")}
                 </Link>
               </li>
 
               <li>
                 <Link
                   className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                    pathname === "/posts"
+                    pathname === `/${locale}/posts`
                       ? "bg-gray-200 dark:bg-gray-700 text-blue-500"
                       : ""
                   }`}
-                  href="/posts"
+                  href={`/${locale}/posts`}
                   onClick={closeMobileMenu}
                 >
-                  Proizvodi
+                  {tNav("posts")}
                 </Link>
               </li>
 
               <li>
                 <Link
                   className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                    pathname === "/contact"
+                    pathname === `/${locale}/contact`
                       ? "bg-gray-200 dark:bg-gray-700 text-blue-500"
                       : ""
                   }`}
-                  href="/contact"
+                  href={`/${locale}/contact`}
                   onClick={closeMobileMenu}
                 >
-                  Kontakt
+                  {tNav("contact")}
                 </Link>
               </li>
 
@@ -197,7 +206,7 @@ export function Header() {
                   href="/studio"
                   onClick={closeMobileMenu}
                 >
-                  Admin
+                  {tNav("admin")}
                 </Link>
               </li>
             </ul>

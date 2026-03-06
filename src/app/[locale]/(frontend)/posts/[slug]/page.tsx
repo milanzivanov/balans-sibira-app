@@ -5,6 +5,8 @@ import { Post } from "@/components/post";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+import { getTranslations } from "next-intl/server";
+
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
 import { client } from "@/sanity/lib/client";
@@ -13,11 +15,14 @@ import { urlFor } from "@/sanity/lib/image";
 export default async function Page({
   params
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale, namespace: "posts" });
+
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
-    params: await params
+    params: { slug, language: locale }
   });
 
   if (!post) {
@@ -30,12 +35,12 @@ export default async function Page({
 
       <div className="flex justify-end items-center mt-8 sm:mt-12">
         <Link
-          href="/posts"
+          href={`/${locale}/posts`}
           rel="noopener noreferrer"
           className="flex items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-center py-3 px-6 sm:px-10 rounded-lg transition-colors font-semibold text-sm sm:text-base w-full sm:w-auto justify-center"
         >
           <FaArrowCircleLeft className="mr-2" />
-          <span>Vrati se na proizvode</span>
+          <span>{t("backToPosts")}</span>
         </Link>
       </div>
 
@@ -45,10 +50,13 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  const posts = await client.fetch<Array<{ slug: { current: string } }>>(
-    `*[_type == "post" && defined(slug.current)][0...100]{ "slug": slug.current }`
+  const posts = await client.fetch<Array<{ slug: string; language: string }>>(
+    `*[_type == "post" && defined(slug.current) && defined(language)][0...100]{ "slug": slug.current, language }`
   );
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map((post) => ({
+    locale: post.language,
+    slug: post.slug
+  }));
 }
 
 export const revalidate = 3600; // Revalidate every hour
@@ -56,11 +64,12 @@ export const revalidate = 3600; // Revalidate every hour
 export async function generateMetadata({
   params
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
+  const { slug, locale } = await params;
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
-    params: { ...(await params), language: "sr" }
+    params: { slug, language: locale }
   });
 
   return {

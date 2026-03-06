@@ -3,8 +3,10 @@ import Link from "next/link";
 import { FaViber, FaWhatsapp } from "react-icons/fa";
 
 import { MdOutlineMailOutline } from "react-icons/md";
+import { useTranslations } from "next-intl";
 
 const ContactCTASection = () => {
+  const t = useTranslations("home.cta");
   return (
     <section className="container max-w-6xl mx-auto px-4 py-16">
       <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6  sm:p-8 md:p-12 text-center border border-gray-200 dark:border-gray-700">
@@ -32,11 +34,10 @@ const ContactCTASection = () => {
         </div>
 
         <h2 className="text-blue-900 dark:text-gray-100 uppercase text-xl sm:text-2xl font-bold mb-4">
-          Zainteresovani za naše proizvode?
+          {t("title")}
         </h2>
         <p className="text-gray-500 dark:text-gray-100 text-sm sm:text-base mb-8 max-w-2xl mx-auto">
-          Kontaktirajte me direktno za više informacija, personalizovane
-          preporuke i porudžbine
+          {t("description")}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
@@ -46,7 +47,7 @@ const ContactCTASection = () => {
             className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto sm:min-w-37.5 justify-center"
           >
             <FaWhatsapp className="text-lg" />
-            WhatsApp
+            {t("whatsapp")}
           </Link>
           <Link
             href={`https://rs.siberianhealth.com/rs/?referral=2667576725&delivery=rs`}
@@ -54,14 +55,14 @@ const ContactCTASection = () => {
             className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto sm:min-w-37.5 justify-center"
           >
             <FaViber className="text-lg" />
-            Viber
+            {t("viber")}
           </Link>
           <Link
             href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 w-full sm:w-auto sm:min-w-37.5 justify-center"
           >
             <MdOutlineMailOutline className="text-lg" />
-            Email
+            {t("email")}
           </Link>
         </div>
       </div>

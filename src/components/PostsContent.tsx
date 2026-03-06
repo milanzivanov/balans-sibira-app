@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowCircleDown } from "react-icons/fa";
+import { useLocale, useTranslations } from "next-intl";
 import { urlFor } from "@/sanity/lib/image";
 import { Categories } from "@/components/categories";
 import type { POSTS_QUERYResult, CATEGORIES_QUERYResult } from "@/sanity/types";
@@ -23,7 +24,18 @@ const colorClasses: Record<string, string> = {
 };
 
 export default function PostsContent({ posts, categories }: PostsContentProps) {
+  const t = useTranslations("posts");
+  const locale = useLocale();
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const getCategoryTitle = (slug: string | undefined, fallback: string | null) => {
+    if (!slug) return fallback;
+    try {
+      return t(`categories.${slug}` as Parameters<typeof t>[0]);
+    } catch {
+      return fallback;
+    }
+  };
 
   const filteredPosts = activeFilter
     ? posts.filter((post) =>
@@ -44,7 +56,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                 : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
             }`}
           >
-            Svi proizvodi
+            {t("filters.all")}
           </button>
           {categories.map((category) => {
             const colorClass =
@@ -62,7 +74,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                     : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
                 }`}
               >
-                {category.title}
+                {getCategoryTitle(category.slug?.current, category.title)}
               </button>
             );
           })}
@@ -73,7 +85,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
       {filteredPosts.length === 0 ? (
         <div className="text-center py-8 sm:py-12">
           <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg">
-            Nema proizvoda u ovoj kategoriji.
+            {t("filters.empty")}
           </p>
         </div>
       ) : (
@@ -100,8 +112,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                 ) : (
                   <div className="w-full h-full bg-linear-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center">
                     <span className="text-blue-400 dark:text-blue-300 text-xs sm:text-sm p-5">
-                      Zbog politike kompanije Siberian Wellness sam morao da
-                      skinem fotografije proizvoda.
+                      {t("imageNotice")}
                     </span>
                   </div>
                 )}
@@ -115,9 +126,9 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                 <Link
                   rel="noopener noreferrer"
                   className="flex justify-center items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-2.5 sm:py-3 rounded-lg transition-colors font-semibold text-sm sm:text-base"
-                  href={`/posts/${post?.slug?.current}`}
+                  href={`/${locale}/posts/${post?.slug?.current}`}
                 >
-                  <span className="font-medium">Detaljnije</span>
+                  <span className="font-medium">{t("details")}</span>
                   <FaArrowCircleDown className="ml-2" />
                 </Link>
               </div>

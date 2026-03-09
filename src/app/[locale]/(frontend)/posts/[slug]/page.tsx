@@ -6,11 +6,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+// import { urlFor } from "@/sanity/lib/image";
 
 export default async function Page({
   params
@@ -59,25 +60,31 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 3600; // Revalidate every hour
-
 export async function generateMetadata({
   params
 }: {
   params: Promise<{ slug: string; locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug, locale } = await params;
   const { data: post } = await sanityFetch({
     query: POST_QUERY,
     params: { slug, language: locale }
   });
 
+  if (!post) {
+    const t = await getTranslations({ locale, namespace: "meta.posts" });
+    return { title: t("title") };
+  }
+
   return {
-    title: post?.title || "Post",
-    openGraph: post?.mainImage
-      ? {
-          images: [urlFor(post.mainImage).width(1200).height(630).url()]
-        }
-      : undefined
+    title: post.title,
+    description: post.excerpt ?? undefined,
+    openGraph: {
+      title: post.title ?? undefined,
+      description: post.excerpt ?? undefined,
+      locale: locale === "sr" ? "sr_RS" : "en_US",
+      type: "article",
+      publishedTime: post.publishedAt ?? undefined
+    }
   };
 }

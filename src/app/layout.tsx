@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,17 +15,18 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.balanssibira.com"
   ),
   title: "Balans Sibira",
-  description:
-    "Balans Sibira - prirodni proizvodi iz srca Sibira. Otkrijte moć sibirskih biljaka i prirodnih sastojaka za zdravlje i dobrobit. Naša ponuda uključuje biljne čajeve, tinkture, kreme i dodatke prehrani, pažljivo izrađene kako bi vam pružile najbolje iz prirode. Iskusite snagu sibirske prirode s Balans Sibira."
+  description: "Balans Sibira - prirodni proizvodi iz srca Sibira."
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" className={inter.className}>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -21,6 +21,7 @@ export const POST_QUERY =
   body,
   mainImage,
   publishedAt,
+  "excerpt": array::join(string::split((pt::text(body)), "")[0..155], "") + "...",
   "categories": coalesce(
     categories[]->{
       _id,

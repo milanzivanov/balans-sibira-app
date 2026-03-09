@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true
   },
-  reactCompiler: true,
+  reactCompiler: false,
   compress: true,
   poweredByHeader: false
 };

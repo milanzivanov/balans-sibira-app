@@ -78,5 +78,19 @@
   "footer": {
     "tagline": "Snaga sibirske prirode za tvoje maksimalne performanse",
     "rights": "© {year} Balans Sibira. Sva prava zadržana."
+  },
+  "meta": {
+    "home": {
+      "title": "Balans Sibira — Prirodna ravnoteža tela i uma",
+      "description": "Otkrijte moć sibirskih biljaka i prirodnih preparata za detoks, energiju i fokus."
+    },
+    "contact": {
+      "title": "Kontakt — Balans Sibira",
+      "description": "Stupite u kontakt sa nama. Odgovorićemo na sva vaša pitanja."
+    },
+    "posts": {
+      "title": "Članci — Balans Sibira",
+      "description": "Pročitajte naše najnovije tekstove o zdravlju, prirodi i ravnoteži."
+    }
   }
 }

@@ -78,5 +78,19 @@
   "footer": {
     "tagline": "The power of Siberian nature for your peak performance",
     "rights": "© {year} Balans Sibira. All rights reserved."
+  },
+  "meta": {
+    "home": {
+      "title": "Balans Sibira — Natural Balance of Body and Mind",
+      "description": "Discover the power of Siberian herbs and natural supplements for detox, energy and focus."
+    },
+    "contact": {
+      "title": "Contact — Balans Sibira",
+      "description": "Get in touch with us. We will answer all your questions."
+    },
+    "posts": {
+      "title": "Articles — Balans Sibira",
+      "description": "Read our latest articles about health, nature and balance."
+    }
   }
 }

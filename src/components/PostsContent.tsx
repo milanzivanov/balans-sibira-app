@@ -28,7 +28,10 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
   const locale = useLocale();
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  const getCategoryTitle = (slug: string | undefined, fallback: string | null) => {
+  const getCategoryTitle = (
+    slug: string | undefined,
+    fallback: string | null
+  ) => {
     if (!slug) return fallback;
     try {
       return t(`categories.${slug}` as Parameters<typeof t>[0]);
@@ -91,7 +94,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {filteredPosts.map((post) => (
-            <div
+            <li
               className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group border border-gray-200 dark:border-gray-700"
               key={post._id}
             >
@@ -132,7 +135,7 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
                   <FaArrowCircleDown className="ml-2" />
                 </Link>
               </div>
-            </div>
+            </li>
           ))}
         </ul>
       )}

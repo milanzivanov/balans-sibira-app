@@ -13,6 +13,7 @@ export function Header() {
   const locale = useLocale();
   const tNav = useTranslations("nav");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const showAdmin = process.env.NEXT_PUBLIC_SHOW_ADMIN === "true";
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -87,11 +88,13 @@ export function Header() {
               </Link>
             </li>
 
-            <li>
-              <Link className="transition-colors" href="/studio">
-                {tNav("admin")}
-              </Link>
-            </li>
+            {showAdmin && (
+              <li>
+                <Link className="transition-colors" href="/studio">
+                  {tNav("admin")}
+                </Link>
+              </li>
+            )}
 
             <LocaleSwitcher />
             <ThemeToggle />
@@ -200,15 +203,17 @@ export function Header() {
                 </Link>
               </li>
 
-              <li>
-                <Link
-                  className="block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                  href="/studio"
-                  onClick={closeMobileMenu}
-                >
-                  {tNav("admin")}
-                </Link>
-              </li>
+              {showAdmin && (
+                <li>
+                  <Link
+                    className="block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                    href="/studio"
+                    onClick={closeMobileMenu}
+                  >
+                    {tNav("admin")}
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </>

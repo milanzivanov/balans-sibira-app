@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { getLocale } from "next-intl/server";
+
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,7 +30,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

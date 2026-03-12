@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowCircleDown } from "react-icons/fa";
@@ -22,6 +22,63 @@ const colorClasses: Record<string, string> = {
   red: "bg-red-500 hover:bg-red-600",
   yellow: "bg-yellow-500 hover:bg-yellow-600"
 };
+
+type PostCardProps = {
+  post: POSTS_QUERYResult[number];
+  locale: string;
+  imageNotice: string;
+  detailsLabel: string;
+};
+
+const PostCard = memo(function PostCard({
+  post,
+  locale,
+  imageNotice,
+  detailsLabel
+}: PostCardProps) {
+  return (
+    <li className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group border border-gray-200 dark:border-gray-700">
+      <div className="flex gap-2 p-3 sm:p-5">
+        <Categories categories={post.categories || []} />
+      </div>
+      <div className="flex justify-center items-center relative h-48 sm:h-56 md:h-64 bg-gray-200 dark:bg-gray-700">
+        {post.mainImage ? (
+          <div className="overflow-hidden">
+            <Image
+              src={urlFor(post.mainImage).width(200).height(200).url()}
+              width={200}
+              height={200}
+              alt={post.mainImage.alt || post.title || ""}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-300 rounded-lg"
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full bg-linear-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center">
+            <span className="text-blue-400 dark:text-blue-300 text-xs sm:text-sm p-5">
+              {imageNotice}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4 sm:p-6">
+        <h3 className="font-bold text-blue-900 dark:text-gray-100 line-clamp-1 text-base sm:text-lg mb-3 sm:mb-5">
+          {post.title}
+        </h3>
+
+        <Link
+          rel="noopener noreferrer"
+          className="flex justify-center items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-2.5 sm:py-3 rounded-lg transition-colors font-semibold text-sm sm:text-base"
+          href={`/${locale}/posts/${post?.slug?.current}`}
+        >
+          <span className="font-medium">{detailsLabel}</span>
+          <FaArrowCircleDown className="ml-2" />
+        </Link>
+      </div>
+    </li>
+  );
+});
 
 export default function PostsContent({ posts, categories }: PostsContentProps) {
   const t = useTranslations("posts");
@@ -94,48 +151,13 @@ export default function PostsContent({ posts, categories }: PostsContentProps) {
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {filteredPosts.map((post) => (
-            <li
-              className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group border border-gray-200 dark:border-gray-700"
+            <PostCard
               key={post._id}
-            >
-              <div className="flex gap-2 p-3 sm:p-5">
-                <Categories categories={post.categories || []} />
-              </div>
-              <div className="flex justify-center items-center relative h-48 sm:h-56 md:h-64 bg-gray-200 dark:bg-gray-700">
-                {post.mainImage ? (
-                  <div className="overflow-hidden">
-                    <Image
-                      src={urlFor(post.mainImage).width(200).height(200).url()}
-                      width={200}
-                      height={200}
-                      alt={post.mainImage.alt || post.title || ""}
-                      className="object-cover group-hover:scale-105 transition-transform duration-300 rounded-lg"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-full bg-linear-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center">
-                    <span className="text-blue-400 dark:text-blue-300 text-xs sm:text-sm p-5">
-                      {t("imageNotice")}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              <div className="p-4 sm:p-6">
-                <h3 className="font-bold text-blue-900 dark:text-gray-100 line-clamp-1 text-base sm:text-lg mb-3 sm:mb-5">
-                  {post.title}
-                </h3>
-
-                <Link
-                  rel="noopener noreferrer"
-                  className="flex justify-center items-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-2.5 sm:py-3 rounded-lg transition-colors font-semibold text-sm sm:text-base"
-                  href={`/${locale}/posts/${post?.slug?.current}`}
-                >
-                  <span className="font-medium">{t("details")}</span>
-                  <FaArrowCircleDown className="ml-2" />
-                </Link>
-              </div>
-            </li>
+              post={post}
+              locale={locale}
+              imageNotice={t("imageNotice")}
+              detailsLabel={t("details")}
+            />
           ))}
         </ul>
       )}

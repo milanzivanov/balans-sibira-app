@@ -9,7 +9,7 @@ export const POSTS_QUERY =
   language,
   mainImage,
   publishedAt,
-  "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",
+  excerpt,
   "categories": categories[]->{_id, slug, title, color},
   "author": author->{name, image}
 }`);
@@ -21,7 +21,7 @@ export const POST_QUERY =
   body,
   mainImage,
   publishedAt,
-  "excerpt": array::join(string::split((pt::text(body)), "")[0..155], "") + "...",
+  excerpt,
   "categories": coalesce(
     categories[]->{
       _id,

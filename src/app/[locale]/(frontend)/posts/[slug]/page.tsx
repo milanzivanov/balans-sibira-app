@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { sanityFetch } from "@/sanity/lib/live";
 import { POST_QUERY } from "@/sanity/lib/queries";
 import { Post } from "@/components/post";
@@ -11,7 +12,14 @@ import type { Metadata } from "next";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
 import { client } from "@/sanity/lib/client";
-// import { urlFor } from "@/sanity/lib/image";
+
+const getPost = cache(async (slug: string, locale: string) => {
+  const { data } = await sanityFetch({
+    query: POST_QUERY,
+    params: { slug, language: locale }
+  });
+  return data;
+});
 
 export default async function Page({
   params
@@ -21,10 +29,7 @@ export default async function Page({
   const { slug, locale } = await params;
   const t = await getTranslations({ locale, namespace: "posts" });
 
-  const { data: post } = await sanityFetch({
-    query: POST_QUERY,
-    params: { slug, language: locale }
-  });
+  const post = await getPost(slug, locale);
 
   if (!post) {
     notFound();
@@ -66,10 +71,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
   const { slug, locale } = await params;
-  const { data: post } = await sanityFetch({
-    query: POST_QUERY,
-    params: { slug, language: locale }
-  });
+  const post = await getPost(slug, locale);
 
   if (!post) {
     const t = await getTranslations({ locale, namespace: "meta.posts" });

@@ -8,36 +8,37 @@ const AboutSection = () => {
       <h2 className="uppercase text-xl sm:text-2xl font-bold text-blue-900  tracking-wider text-left mb-6">
         {t("title")}
       </h2>
-        <div className="grid md:grid-cols-2 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
-          {/* Image Side */}
-          <div className="relative h-64 md:h-auto">
-            <div className="absolute inset-0 bg-blue-700 opacity-10 dark:opacity-5 z-10"></div>
-            <Image
-              src="/bg-about-us.jpg"
-              alt={t("imageAlt")}
-              fill
-              className="absolute inset-0 object-cover object-bottom"
-            />
-          </div>
+      <div className="grid md:grid-cols-2 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Image Side */}
+        <div className="relative h-64 md:h-auto">
+          <div className="absolute inset-0 bg-blue-700 opacity-10 dark:opacity-5 z-10"></div>
+          <Image
+            src="/bg-about-us.jpg"
+            alt={t("imageAlt")}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="absolute inset-0 object-cover object-bottom"
+          />
+        </div>
 
-          {/* Text Side */}
-          <div className="p-6 sm:p-8 flex flex-col justify-center">
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-100 leading-relaxed">
-              <strong className="text-blue-900 dark:text-gray-100">
-                Balans Sibira
-              </strong>{" "}
-              {t("paragraph1")}
+        {/* Text Side */}
+        <div className="p-6 sm:p-8 flex flex-col justify-center">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-100 leading-relaxed">
+            <strong className="text-blue-900 dark:text-gray-100">
+              Balans Sibira
+            </strong>{" "}
+            {t("paragraph1")}
+          </p>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-100 leading-relaxed mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {t("paragraph2")}
+          </p>
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 dark:text-gray-100">
+            <p className="text-sm sm:text-base font-medium text-gray-600 dark:text-gray-100 leading-relaxed">
+              {t("paragraph3")}
             </p>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-100 leading-relaxed mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              {t("paragraph2")}
-            </p>
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 dark:text-gray-100">
-              <p className="text-sm sm:text-base font-medium text-gray-600 dark:text-gray-100 leading-relaxed">
-                {t("paragraph3")}
-              </p>
-            </div>
           </div>
         </div>
+      </div>
     </section>
   );
 };

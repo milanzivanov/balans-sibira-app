@@ -15,7 +15,31 @@ export default function ContactForm() {
     type: "success" | "error" | null;
     customMessage?: string;
   }>({ type: null });
+  const [errors, setErrors] = useState<{
+    firstName?: string;
+    email?: string;
+    message?: string;
+  }>({});
   const formRef = useRef<HTMLFormElement>(null);
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateField = (name: string, value: string): string | undefined => {
+    if (name === "firstName" && !value.trim()) return formT("nameRequired");
+    if (name === "email") {
+      if (!value.trim()) return formT("emailRequired");
+      if (!EMAIL_REGEX.test(value)) return formT("emailInvalid");
+    }
+    if (name === "message" && !value.trim()) return formT("messageRequired");
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +52,18 @@ export default function ContactForm() {
       email: formData.get("email") as string,
       message: formData.get("message") as string
     };
+
+    // Validate all fields before submitting
+    const nextErrors = {
+      firstName: validateField("firstName", data.firstName),
+      email: validateField("email", data.email),
+      message: validateField("message", data.message)
+    };
+    setErrors(nextErrors);
+    if (Object.values(nextErrors).some(Boolean)) {
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch("/api/send", {
@@ -91,12 +127,26 @@ export default function ContactForm() {
               id="firstName"
               name="firstName"
               required
+              aria-invalid={!!errors.firstName}
+              aria-describedby={
+                errors.firstName ? "firstName-error" : undefined
+              }
+              onBlur={handleBlur}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors text-sm sm:text-base"
               placeholder={formT("namePlaceholder")}
             />
+            {errors.firstName && (
+              <p
+                id="firstName-error"
+                role="alert"
+                className="mt-1 text-xs text-red-600 dark:text-red-400"
+              >
+                {errors.firstName}
+              </p>
+            )}
           </div>
 
           {/* Email */}
@@ -112,12 +162,24 @@ export default function ContactForm() {
               id="email"
               name="email"
               required
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              onBlur={handleBlur}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors text-sm sm:text-base"
               placeholder={formT("emailPlaceholder")}
             />
+            {errors.email && (
+              <p
+                id="email-error"
+                role="alert"
+                className="mt-1 text-xs text-red-600 dark:text-red-400"
+              >
+                {errors.email}
+              </p>
+            )}
           </div>
 
           {/* Message */}
@@ -133,17 +195,31 @@ export default function ContactForm() {
               name="message"
               required
               rows={6}
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? "message-error" : undefined}
+              onBlur={handleBlur}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                        bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                        focus:ring-2 focus:ring-blue-500 focus:border-transparent
                        transition-colors resize-none text-sm sm:text-base"
               placeholder={formT("messagePlaceholder")}
             />
+            {errors.message && (
+              <p
+                id="message-error"
+                role="alert"
+                className="mt-1 text-xs text-red-600 dark:text-red-400"
+              >
+                {errors.message}
+              </p>
+            )}
           </div>
 
           {/* Status Message */}
           {submitStatus.type && (
             <div
+              role="alert"
+              aria-live="polite"
               className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
                 submitStatus.type === "success"
                   ? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300"

@@ -122,6 +122,7 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   publishedAt?: string;
+  excerpt?: string;
   body?: BlockContent;
   language?: string;
 };
@@ -282,7 +283,7 @@ export type AllSanitySchemaTypes = Category | Slug | BlockContent | TranslationM
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current) && language == $language]  |order(publishedAt desc)[0...12]{  _id,  title,  slug,  language,  mainImage,  publishedAt,  "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",  "categories": categories[]->{_id, slug, title, color},  "author": author->{name, image}}
+// Query: *[_type == "post" && defined(slug.current) && language == $language]  |order(publishedAt desc)[0...12]{  _id,  title,  slug,  language,  mainImage,  publishedAt,  excerpt,  "categories": categories[]->{_id, slug, title, color},  "author": author->{name, image}}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -302,7 +303,7 @@ export type POSTS_QUERYResult = Array<{
     _type: "image";
   } | null;
   publishedAt: string | null;
-  excerpt: string;
+  excerpt: string | null;
   categories: Array<{
     _id: string;
     slug: Slug | null;
@@ -326,7 +327,7 @@ export type POSTS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug && language == $language][0]{  _id,  title,  body,  mainImage,  publishedAt,  "excerpt": array::join(string::split((pt::text(body)), "")[0..155], "") + "...",  "categories": coalesce(    categories[]->{      _id,      slug,      title,      color    },    []  ),  author->{    name,    image  },  language}
+// Query: *[_type == "post" && slug.current == $slug && language == $language][0]{  _id,  title,  body,  mainImage,  publishedAt,  excerpt,  "categories": coalesce(    categories[]->{      _id,      slug,      title,      color    },    []  ),  author->{    name,    image  },  language}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -345,7 +346,7 @@ export type POST_QUERYResult = {
     _type: "image";
   } | null;
   publishedAt: string | null;
-  excerpt: string;
+  excerpt: string | null;
   categories: Array<{
     _id: string;
     slug: Slug | null;
@@ -382,8 +383,8 @@ export type CATEGORIES_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current) && language == $language]\n  |order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  language,\n  mainImage,\n  publishedAt,\n  \"excerpt\": array::join(string::split((pt::text(body)), \"\")[0..150], \"\") + \"...\",\n  \"categories\": categories[]->{_id, slug, title, color},\n  \"author\": author->{name, image}\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug && language == $language][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"excerpt\": array::join(string::split((pt::text(body)), \"\")[0..155], \"\") + \"...\",\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  language\n}": POST_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current) && language == $language]\n  |order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  language,\n  mainImage,\n  publishedAt,\n  excerpt,\n  \"categories\": categories[]->{_id, slug, title, color},\n  \"author\": author->{name, image}\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug && language == $language][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  excerpt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      color\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  },\n  language\n}": POST_QUERYResult;
     "*[_type == \"category\"]|order(title asc){\n  _id,\n  title,\n  slug,\n  color\n}": CATEGORIES_QUERYResult;
   }
 }

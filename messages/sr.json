@@ -71,6 +71,10 @@
       "submitting": "Šalje se...",
       "success": "Poruka je uspešno poslata!",
       "error": "Greška pri slanju poruke. Pokušajte ponovo.",
+      "nameRequired": "Ime je obavezno",
+      "emailRequired": "Email je obavezan",
+      "emailInvalid": "Unesite ispravnu email adresu",
+      "messageRequired": "Poruka je obavezna",
       "cta": "Kontaktirajte me direktno za više informacija, personalizovane preporuke i porudžbine"
     },
     "back": "Vrati se na početak"

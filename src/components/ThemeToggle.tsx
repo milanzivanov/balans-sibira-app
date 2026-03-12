@@ -9,10 +9,14 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setDark(true);
-      document.documentElement.classList.add("dark");
+    try {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        setDark(true);
+        document.documentElement.classList.add("dark");
+      }
+    } catch {
+      // localStorage unavailable (e.g. private browsing) — default to light
     }
   }, []);
 
@@ -25,7 +29,11 @@ export default function ThemeToggle() {
   const toggleTheme = () => {
     const newDark = !dark;
     setDark(newDark);
-    localStorage.setItem("theme", newDark ? "dark" : "light");
+    try {
+      localStorage.setItem("theme", newDark ? "dark" : "light");
+    } catch (error) {
+      console.error("Failed to save theme preference:", error);
+    }
   };
 
   if (!mounted) {

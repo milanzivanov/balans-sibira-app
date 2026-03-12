@@ -71,6 +71,10 @@
       "submitting": "Sending...",
       "success": "Your message has been sent!",
       "error": "Something went wrong. Please try again.",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Message is required",
       "cta": "Reach out directly for more info, tailored recommendations, or to place an order"
     },
     "back": "Back to home"

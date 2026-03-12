@@ -36,19 +36,8 @@ export function Post(props: NonNullable<POST_QUERYResult>) {
             alt={title || "Post image"}
             className="rounded-lg object-cover w-full h-auto bg-gray-100 dark:bg-gray-700"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-            loading="lazy" // or "eager" if above fold
+            loading="lazy"
           />
-          {/* <div className="flex justify-start w-full">
-            <Link
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center bg-[#1b88c3] hover:bg-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-center py-3 px-6 sm:px-10 rounded-lg transition-colors font-semibold text-sm sm:text-base w-full sm:w-auto"
-            >
-              <span>Poruči</span>
-              <FaCartArrowDown className="ml-2" />
-            </Link>
-          </div> */}
         </figure>
       ) : null}
       {body ? (

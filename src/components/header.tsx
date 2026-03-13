@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { HeaderNav } from "./HeaderNav";
 
-export async function Header() {
-  const locale = await getLocale();
+export async function Header({ locale }: { locale: string }) {
   const tNav = await getTranslations({ locale, namespace: "nav" });
   const showAdmin = process.env.NEXT_PUBLIC_SHOW_ADMIN === "true";
 

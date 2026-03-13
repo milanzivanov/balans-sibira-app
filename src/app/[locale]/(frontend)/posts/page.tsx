@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { POSTS_QUERY, CATEGORIES_QUERY } from "@/sanity/lib/queries";
 
 import Link from "next/link";
@@ -30,6 +30,8 @@ export async function generateMetadata({
   };
 }
 
+export const revalidate = 300;
+
 export default async function Page({
   params
 }: {
@@ -38,11 +40,17 @@ export default async function Page({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "posts" });
 
-  const { data: posts } = await sanityFetch({
-    query: POSTS_QUERY,
-    params: { language: locale }
-  });
-  const { data: categories } = await sanityFetch({ query: CATEGORIES_QUERY });
+  const posts = await client.fetch(
+    POSTS_QUERY,
+    { language: locale },
+    { next: { revalidate: 300, tags: ["posts", "posts:" + locale] } }
+  );
+
+  const categories = await client.fetch(
+    CATEGORIES_QUERY,
+    {},
+    { next: { revalidate: 3600, tags: ["categories"] } }
+  );
 
   return (
     <main className="container max-w-6xl mx-auto px-4 py-12">

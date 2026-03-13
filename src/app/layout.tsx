@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
-
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Inter } from "next/font/google";
@@ -26,10 +24,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
-
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+    <html className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">
         {children}
         <SpeedInsights />

@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { POST_QUERY } from "@/sanity/lib/queries";
 import { Post } from "@/components/post";
 
@@ -11,14 +11,15 @@ import type { Metadata } from "next";
 
 import { FaArrowCircleLeft } from "react-icons/fa";
 import BackToTopButton from "@/components/BackToTopButton";
-import { client } from "@/sanity/lib/client";
+
+export const revalidate = 300;
 
 const getPost = cache(async (slug: string, locale: string) => {
-  const { data } = await sanityFetch({
-    query: POST_QUERY,
-    params: { slug, language: locale }
-  });
-  return data;
+  return client.fetch(
+    POST_QUERY,
+    { slug, language: locale },
+    { next: { revalidate: 300, tags: ["post", "post:" + locale + ":" + slug] } }
+  );
 });
 
 export default async function Page({

@@ -1,30 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import LocaleSwitcher from "./LocaleSwitcher";
 
-type HeaderNavProps = {
-  locale: string;
-  showAdmin: boolean;
-  labels: {
-    home: string;
-    posts: string;
-    contact: string;
-    admin: string;
-  };
+type NavLink = {
+  href: string;
+  label: string;
 };
 
-const HeaderNavMobile = dynamic(
-  () => import("./HeaderNavMobile").then((m) => m.HeaderNavMobile),
-  { ssr: false }
-);
-
-export function HeaderNav({ locale, showAdmin, labels }: HeaderNavProps) {
+export function HeaderNavMobile({ navLinks }: { navLinks: NavLink[] }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -38,39 +25,8 @@ export function HeaderNav({ locale, showAdmin, labels }: HeaderNavProps) {
     };
   }, [isMobileMenuOpen]);
 
-  const navLinks = [
-    { href: "/" + locale, label: labels.home },
-    { href: "/" + locale + "/posts", label: labels.posts },
-    { href: "/" + locale + "/contact", label: labels.contact },
-    ...(showAdmin ? [{ href: "/studio", label: labels.admin }] : [])
-  ];
-
   return (
     <>
-      {/* Desktop Navigation */}
-      <ul className="hidden md:flex items-center gap-4 font-medium text-slate-700 dark:text-slate-100">
-        {navLinks.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              prefetch={link.href === "/studio" ? false : undefined}
-              className={`hover:underline transition-colors ${
-                pathname === link.href ? "underline text-blue-300" : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-        <li>
-          <LocaleSwitcher />
-        </li>
-        <li>
-          <ThemeToggle />
-        </li>
-      </ul>
-
-      {/* Mobile Menu Button */}
       <div className="flex md:hidden items-center gap-2 sm:gap-3">
         <LocaleSwitcher />
         <ThemeToggle />
@@ -112,7 +68,6 @@ export function HeaderNav({ locale, showAdmin, labels }: HeaderNavProps) {
         </button>
       </div>
 
-      {/* Mobile Navigation Menu - Full Screen Overlay */}
       {isMobileMenuOpen && (
         <>
           <div
@@ -129,13 +84,15 @@ export function HeaderNav({ locale, showAdmin, labels }: HeaderNavProps) {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    className={`block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                      pathname === link.href
-                        ? "bg-gray-200 dark:bg-gray-700 text-blue-500"
-                        : ""
-                    }`}
                     href={link.href}
+                    prefetch={link.href === "/studio" ? false : undefined}
                     onClick={closeMobileMenu}
+                    className={
+                      "block px-6 py-6 text-lg text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors " +
+                      (pathname === link.href
+                        ? "bg-gray-200 dark:bg-gray-700 text-blue-500"
+                        : "")
+                    }
                   >
                     {link.label}
                   </Link>

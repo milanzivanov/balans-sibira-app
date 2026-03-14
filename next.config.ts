@@ -18,7 +18,21 @@ const nextConfig: NextConfig = {
   },
   reactCompiler: true,
   compress: true,
-  poweredByHeader: false
+  poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/posts",
+        destination: "/sr/posts",
+        permanent: true
+      },
+      {
+        source: "/posts/:slug",
+        destination: "/sr/posts/:slug",
+        permanent: true
+      }
+    ];
+  }
 };
 
 export default withNextIntl(nextConfig);

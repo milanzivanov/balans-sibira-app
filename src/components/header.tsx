@@ -29,7 +29,6 @@ export async function Header({ locale }: { locale: string }) {
               width={75}
               height={75}
               className="mx-auto hidden dark:block w-14 h-14 sm:w-18.75 sm:h-18.75"
-              priority
             />
           </Link>
 

@@ -25,16 +25,24 @@ export default async function FrontendLayout({
 
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const allMessages = await getMessages({ locale });
+
+  const messages = {
+    nav: allMessages.nav,
+    home: allMessages.home,
+    posts: allMessages.posts,
+    contact: allMessages.contact,
+    footer: allMessages.footer
+  };
+
   const isDraftMode = (await draftMode()).isEnabled;
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <section className="bg-white min-h-screen">
         <Header locale={locale} />
         {children}
         {isDraftMode ? <SanityLive /> : null}
-        <SanityLive />
       </section>
     </NextIntlClientProvider>
   );
